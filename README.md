@@ -1,2 +1,2 @@
 # K-hachathon 본선
-Meet In 
+Meet In demo version.
