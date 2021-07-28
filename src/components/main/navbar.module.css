@@ -2,21 +2,26 @@
     display: flex;
     flex : 1;
     flex-direction: row;
-    /* background-color: dodgerblue; */
+    color: indigo;
     justify-content: space-around;
-    opacity: 70%;
+    align-items: center;
+    z-index: 2;
 }
 
 .logo {
     display: flex;
     width: 10%;
-    /* background-color: crimson; */
-    opacity: 70%;
+    color: crimson;
+    align-items: center;
 }
 
-.button {
+button {
     display: flex;
-    width: 10%;
-    /* background-color: darkblue; */
-    opacity: 70%;
+    width: 15%;
+    height: 50%;
+    border-radius: 1rem;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
 }
