@@ -1,18 +1,13 @@
 import React from 'react';
-import './index.css';
+import Body from './body';
+import styles from './index.module.css';
+import Navbar from './navbar';
 
 function Main() {
   return (
-    <div>
-      <div className="title">Meet In</div>
-      <div className="content">
-        <div>
-          <button type="button">로그인</button>
-        </div>
-        <div>
-          <button type="button">로그인 없이 시작</button>
-        </div>
-      </div>
+    <div className={styles.wrap}>
+      <Navbar />
+      <Body />
     </div>
   );
 }

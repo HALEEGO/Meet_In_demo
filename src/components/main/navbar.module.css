@@ -1,0 +1,22 @@
+.navbar {
+    display: flex;
+    flex : 1;
+    flex-direction: row;
+    /* background-color: dodgerblue; */
+    justify-content: space-around;
+    opacity: 70%;
+}
+
+.logo {
+    display: flex;
+    width: 10%;
+    /* background-color: crimson; */
+    opacity: 70%;
+}
+
+.button {
+    display: flex;
+    width: 10%;
+    /* background-color: darkblue; */
+    opacity: 70%;
+}
