@@ -9,13 +9,13 @@ function Mainbody() {
       <p>PARTICIPATE YOUR MEETING ROOM WITH YOUR COLLEAGUE</p>
       <div>
         <Link to="/home">
-          <button type="button">
+          <button type="button" className={styles.button}>
             <span />
             START
           </button>
         </Link>
         <Link to="/home">
-          <button type="button">
+          <button type="button" className={styles.button}>
             <span />
             GUEST MODE
           </button>

@@ -1,0 +1,45 @@
+.flexbody {
+    display: flex;
+    justify-content: center;
+}
+
+/* 패딩좀 줘서 꾸며야할 듯 */
+
+.center {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.3);
+    align-items: center;
+}
+
+
+.inputtext {
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 10px 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #009688;
+    background: transparent;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.button {
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 10px 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #009688;
+    background: transparent;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}

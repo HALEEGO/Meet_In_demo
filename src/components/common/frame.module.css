@@ -11,4 +11,5 @@
     background-image: url(../main/mainback.png), repeating-linear-gradient(rgba(7, 69, 135, 0.55),rgba(18,105,199,0.25));
     background-position: center;
     background-size: cover;
+    justify-content: center;
 }
