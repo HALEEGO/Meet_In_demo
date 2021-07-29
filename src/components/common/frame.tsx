@@ -6,7 +6,7 @@ function Frame({ children }: any) {
   return (
     <div className={styles.wrap}>
       <Navbar />
-      <div className="body">{children}</div>
+      {children}
     </div>
   );
 }
