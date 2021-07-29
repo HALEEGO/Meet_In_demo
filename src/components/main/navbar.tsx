@@ -1,17 +1,40 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './navbar.module.css';
 import real from './real.png';
 
 function Navbar() {
   return (
     <div className={styles.navbar}>
-      <img src={real} className={styles.logo} alt="dd" />
+      <Link to="/" className={styles.a}>
+        <img src={real} className={styles.logo} alt="dd" />
+      </Link>
       <ul>
-        <li>home</li>
-        <li>about us</li>
-        <li>participate</li>
-        <li>signup</li>
-        <li>login</li>
+        <li>
+          <Link to="/home" className={styles.a}>
+            home
+          </Link>
+        </li>
+        <li>
+          <Link to="/about" className={styles.a}>
+            about us
+          </Link>
+        </li>
+        <li>
+          <Link to="/participate" className={styles.a}>
+            participate
+          </Link>
+        </li>
+        <li>
+          <Link to="/signup" className={styles.a}>
+            signup
+          </Link>
+        </li>
+        <li>
+          <Link to="/login" className={styles.a}>
+            login
+          </Link>
+        </li>
       </ul>
     </div>
   );

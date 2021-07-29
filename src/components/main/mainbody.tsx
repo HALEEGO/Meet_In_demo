@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './mainbody.module.css';
 
 function Mainbody() {
@@ -7,14 +8,18 @@ function Mainbody() {
       <h1>MEET IN G ROOM</h1>
       <p>PARTICIPATE YOUR MEETING ROOM WITH YOUR COLLEAGUE</p>
       <div>
-        <button type="button">
-          <span />
-          START
-        </button>
-        <button type="button">
-          <span />
-          GUEST MODE
-        </button>
+        <Link to="/home">
+          <button type="button">
+            <span />
+            START
+          </button>
+        </Link>
+        <Link to="/home">
+          <button type="button">
+            <span />
+            GUEST MODE
+          </button>
+        </Link>
       </div>
     </div>
   );
