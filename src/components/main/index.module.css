@@ -3,7 +3,7 @@
     flex: 10;
     flex-direction: column;
     height: 100vh;
-    background-image: url(./mainback.png);
+    background-image: url(../../assets/image/mainback.png);
     background-blend-mode: luminosity;
     background-position: center;
     background-repeat: no-repeat;
