@@ -1,11 +1,15 @@
 import React from 'react';
-import Frame from '../common/frame';
+import Navbar from '../common/navbar';
+import styles from './home.module.css';
 
 function Home() {
   return (
-    <Frame>
-      <div>시작하기 or 방만들기 등등..... page</div>
-    </Frame>
+    <div className={styles.hwrap}>
+      <Navbar />
+      <div className={styles.sogae}>
+        <div />
+      </div>
+    </div>
   );
 }
 

@@ -18,14 +18,14 @@
 }
 .a{
     text-decoration: none;
-    color: #fff;
+    color: midnightblue;
     text-transform: uppercase;
 }
 .navbar ul li::after {
     content: '';
     height: 3px;
     width: 0;
-    background-color: #009688;
+    background-color: #57f1e2;
     position: absolute;
     left: 0;
     bottom: -10px;
