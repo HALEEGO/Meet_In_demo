@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './navbar.module.css';
-import real from '../../assets/image/logo.png';
+import meetinlogo from '../../assets/image/mintlogo.png';
 
 function Navbar() {
   return (
     <div className={styles.navbar}>
       <Link to="/" className={styles.a}>
-        <img src={real} className={styles.logo} alt="dd" />
+        <img src={meetinlogo} className={styles.meetIn} alt="dd" />
       </Link>
       <ul>
         <li>

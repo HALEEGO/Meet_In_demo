@@ -1,7 +1,7 @@
 .explaining {
     width: 100%;
     position: absolute;
-    top: 50%;
+    top: 60%;
     transform: translateY(-90%);
     text-align: center;
     color: #fff;
@@ -27,14 +27,14 @@
     font-weight: bold;
     border: 2px solid #7aebdf;
     background: transparent;
-    color: #3f72af;
+    color: #fff;
     cursor: pointer;
     position: relative;
     overflow: hidden;
 }
 
 span {
-    background: #f9f7f7;
+    background: rgba(255, 255, 255, 0.2);
     height: 100%;
     width: 0;
     border-radius: 25px;

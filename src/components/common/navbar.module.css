@@ -18,7 +18,7 @@
 }
 .a{
     text-decoration: none;
-    color: midnightblue;
+    color: #fff;
     text-transform: uppercase;
 }
 .navbar ul li::after {
@@ -36,7 +36,9 @@
     width: 100%;
 }
 
-.logo {
-    width: 120px;
+.meetIn {
+    width: 200px;
     cursor: pointer;
+    height: 60px;
+    z-index: 10000;
 }
