@@ -21,8 +21,8 @@ function Navbar() {
           </Link>
         </li>
         <li>
-          <Link to="/participate" className={styles.a}>
-            participate
+          <Link to="/makeRoom" className={styles.a}>
+            makeRoom
           </Link>
         </li>
         <li>

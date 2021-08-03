@@ -4,17 +4,146 @@
     font-family: sans-serif;
 }
 
-.hwrap {
+.scroll {
     width: 100%;
-    height: 100vh;
+    height: 300vh;
     flex-direction: column;
-    /* background-image: url(../../assets/image/board.jpg); */
-    background-color: midnightblue;
-    background-position: center;
-    background-size: cover;
+    /* background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(../../assets/image/method/5w1h/business-3694993.jpg); */
+    /* background-position: center; */
+    /* background-size: 100%; */
+    /* background-repeat: no-repeat; */
+    /* background-blend-mode: darken; */
+    background-color: navajowhite;
     justify-content: center;
 }
 
-.sogae {
-    
+.homebody {
+    width: inherit;
+    height: 70%;
+    display: flex;
+    flex-direction: row;
+}
+
+.menubar {
+    width: 20%;
+    height: 100%;
+    position: fixed;
+    top: 20%;
+    background-color: skyblue;
+}
+
+.content {
+    width: 80%;
+    height: 100%;
+    flex-direction: column;
+    position: relative;
+    left: 20%;
+    top: 10%;
+}
+
+
+.participate {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    flex: 8;
+    flex-direction: row;
+    background-color: indigo;
+}
+
+.makeDiv {
+    flex: 4;
+    width: 50%;
+    height: 100%;
+    flex-direction: column;
+}
+
+.makeDiv .choose {
+    display: flex;
+    height: 100px;
+    flex-direction: row;
+    margin-top: 10px;
+    /* justify-content: center; */
+    justify-content: space-evenly;
+}
+
+.enterDiv {
+    flex: 4;
+    width: 50%;
+    height: 100%;
+    flex-direction: column;
+}
+
+.introduce {
+    width: 100%;
+    height: 630px;
+    flex-direction: column;
+    background-color: navy;
+}
+
+.way {
+    width: 100px;
+    height: 100px;
+    margin: 100px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    flex: 10;
+    width: 100%;
+    height: 400px;
+    background-color: orange;
+}
+
+.profileImageBox {
+    display: flex;
+    flex: 2;
+    align-items: center;
+    justify-content: center;
+}
+
+.profileImage {
+    width: 120px;
+    height: 120px;
+    margin: 20px 10px;
+    border-radius: 100px;
+}
+
+.profileOption {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    align-items: center;
+}
+
+.userInformation {
+    display: flex;
+    flex: auto;
+}
+
+.log {
+    width: 100%;
+    height: 400px;
+    background-color: plum;
+    display: flex;
+    flex: 10;
+    flex-direction: column;
+}
+
+.cTime {
+    display: flex;
+    height: 30%;
+}
+
+.meetLog {
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+}
+
+.etc {
+    width: 100%;
+    height: 400px;
+    background-color: royalblue;
 }

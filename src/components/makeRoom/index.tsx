@@ -1,12 +1,10 @@
 import React from 'react';
 import Frame from '../common/frame';
 
-function MakeRoom() {
+export default function MakeRoom() {
   return (
     <Frame>
-      <div>signUp page</div>
+      <div>make</div>
     </Frame>
   );
 }
-
-export default MakeRoom;
