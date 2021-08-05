@@ -15,6 +15,11 @@
     justify-content: center;
 }
 
+.childBody {
+    display: flex;
+    justify-content: center;
+}
+
  /* 
 .wrap:hover {
     background-color: white;

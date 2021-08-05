@@ -8,13 +8,13 @@ function Mainbody() {
       <h1>MEET IN G ROOM</h1>
       <p>PARTICIPATE YOUR MEETING ROOM WITH YOUR COLLEAGUE</p>
       <div>
-        <Link to="/home">
+        <Link to="/makeRoom">
           <button type="button" className={styles.button}>
             <span />
             START
           </button>
         </Link>
-        <Link to="/home">
+        <Link to="/makeRoom">
           <button type="button" className={styles.button}>
             <span />
             GUEST MODE

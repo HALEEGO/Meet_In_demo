@@ -1,6 +1,7 @@
 .flexbody {
     display: flex;
     justify-content: center;
+    padding-top: 250px;
 }
 
 /* 패딩좀 줘서 꾸며야할 듯 */

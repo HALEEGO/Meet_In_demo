@@ -16,8 +16,8 @@ function Navbar() {
           </Link>
         </li>
         <li>
-          <Link to="/about" className={styles.a}>
-            about us
+          <Link to="/history" className={styles.a}>
+            history
           </Link>
         </li>
         <li>

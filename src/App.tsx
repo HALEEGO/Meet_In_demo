@@ -6,6 +6,7 @@ import SignUp from './components/signUp';
 import Home from './components/home';
 import MakeRoom from './components/makeRoom';
 import Room from './components/room';
+import History from './components/history';
 
 const App = () => (
   <Router>
@@ -16,6 +17,7 @@ const App = () => (
       <Route path="/home" exact component={Home} />
       <Route path="/makeRoom" exact component={MakeRoom} />
       <Route path="/room" exact component={Room} />
+      <Route path="/history" exact component={History} />
     </Switch>
   </Router>
 );
