@@ -5,11 +5,15 @@
 
 .body {
     display: flex;
-    height: 90vh;
+    height: 70vh;
     width: 100%;
-    flex-direction: row;
+    flex-direction: column;
 }
+.boxandtool {
+    display: flex;
+    flex-direction: row;
 
+}
 .sandbox {
     height: 100%;
     width: 90%;
@@ -17,12 +21,21 @@
 }
 
 .toolbar {
+    display: flex;
     height: 100%;
     width: 10%;
     background-color: blue;
+    flex-direction: column;
 }
+
+.toolbox button {
+    width: 25px;
+    height: 25px;
+    margin: 15px;
+}
+
 .toolbarClosed {
-    height: 100%;
+    /* height: 100%; */
     width: 0;
 }
 
@@ -30,5 +43,14 @@
     position: absolute;
     top: 15vh;
     right: 1vh;
-    
+}
+
+.functionBox {
+    display: flex;
+    margin-top: 250px;
+    flex-direction: column;
+}
+
+.personList {
+    display: flex;
 }

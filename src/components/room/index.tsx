@@ -76,32 +76,72 @@ function Room() {
     <div className={styles.root}>
       <RoomNav />
       <div className={styles.body}>
-        <div className={styles.sandbox}>
-          <Stage
-            width={windowX * 0.9}
-            height={windowY * 0.9}
-            draggable
-            onWheel={handleWheel}
-            onClick={attachPostIt}
-            scaleX={stages.scale}
-            scaleY={stages.scale}
-            x={stages.x}
-            y={stages.y}
-          >
-            <Layer>{shape.map((e) => e)}</Layer>
-          </Stage>
-        </div>
-        <div className={styles.toolbar}>
-          <div style={{ width: '100%', height: '20%' }}>
-            X: {x} Y: {y} <p>postIt: {isPostIt ? 'true' : 'false'}</p>
-            mouse Point X : {}
-            <p>
-              scale : {stages.scale}, x: {stages.x}, y: {stages.y}
-            </p>
+        <div className={styles.boxandtool}>
+          <div className={styles.sandbox}>
+            <Stage
+              width={windowX * 0.9}
+              height={windowY * 0.8}
+              draggable
+              onWheel={handleWheel}
+              onClick={attachPostIt}
+              scaleX={stages.scale}
+              scaleY={stages.scale}
+              x={stages.x}
+              y={stages.y}
+            >
+              <Layer>{shape.map((e) => e)}</Layer>
+            </Stage>
           </div>
-          <button type="button" onClick={changeIsPostIt}>
-            포스트잇
-          </button>
+          <div className={styles.toolbar}>
+            <div className={styles.toolbox}>
+              <button type="button" onClick={changeIsPostIt}>
+                포스트잇
+              </button>
+              <button type="button" onClick={changeIsPostIt}>
+                펜
+              </button>
+              <button type="button" onClick={changeIsPostIt}>
+                형광펜
+              </button>
+              <button type="button" onClick={changeIsPostIt}>
+                지우개
+              </button>
+              <button type="button" onClick={changeIsPostIt}>
+                그래프
+              </button>
+              <button type="button" onClick={changeIsPostIt}>
+                찬반투표
+              </button>
+              <button type="button" onClick={changeIsPostIt}>
+                이미지
+              </button>
+              <button type="button" onClick={changeIsPostIt}>
+                도형
+              </button>
+              <button type="button" onClick={changeIsPostIt}>
+                멀티셀렉터
+              </button>
+              <button type="button" onClick={changeIsPostIt}>
+                휴지통
+              </button>
+            </div>
+            <div className={styles.functionBox}>
+              <button type="button" onClick={changeIsPostIt}>
+                초대하기
+              </button>
+              <button type="button" onClick={changeIsPostIt}>
+                나가기
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className={styles.personList}>
+          <div>HOST</div>
+          <div>part1</div>
+          <div>part2</div>
+          <div>part3</div>
+          <div>part4</div>
+          <div>part5</div>
         </div>
       </div>
     </div>
