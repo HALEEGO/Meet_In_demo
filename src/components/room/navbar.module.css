@@ -8,9 +8,13 @@
     padding: 35px 0;
     justify-content: space-between;
     /* align-items: center; */
+    /* background-image: ; */
     z-index: 2;
-    background-color: darkblue;
+    background-color: #fff;
     position: relative;
+    border: 2px solid #fff;
+    /* border-radius: 10px; */
+    box-shadow: 0 2px 2px 2px rgba(0,0,0,0.5);
 }
 
 .navbar ul li {
@@ -40,4 +44,21 @@
     position: relative;
     overflow: hidden;
     cursor: pointer; */
+}
+
+.levelExplain {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.role {
+    color: violet;
+    font-weight: bold;
+}
+
+.work {
+    color: violet;
+    font-weight: bold;
+
 }

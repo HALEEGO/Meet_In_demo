@@ -1,8 +1,19 @@
 import React, { useState } from 'react';
 import { Stage, Layer, Text } from 'react-konva';
+import Button from '@material-ui/core/Button';
 import styles from './index.module.css';
 import RoomNav from './roomNav';
 import PostIt from './postIt';
+import toolPost from '../../assets/icon/sticky-note.png';
+import toolPen from '../../assets/icon/pen.png';
+import toolHigh from '../../assets/icon/highlighter.png';
+import toolEraser from '../../assets/icon/eraser.png';
+import toolGraph from '../../assets/icon/graph.png';
+import toolVote from '../../assets/icon/vote.png';
+import toolShape from '../../assets/icon/shapes.png';
+import toolSelector from '../../assets/icon/selection.png';
+import toolImage from '../../assets/icon/picture.png';
+import toolTrashCan from '../../assets/icon/delete.png';
 
 type textType = {
   textEditVisible: boolean;
@@ -116,6 +127,25 @@ function Room() {
     }
   };
 
+  // 입퇴장 관련 버튼
+  const Invite = () => (
+    <Button variant="contained" color="primary" disableElevation>
+      초대하기
+    </Button>
+  );
+
+  const PartExit = () => (
+    <Button variant="contained" color="primary" disableElevation>
+      나가기
+    </Button>
+  );
+
+  // const HostExit = () => (
+  //   <Button variant="contained" color="primary" disableElevation>
+  //     나가기 또는 회의 종료
+  //   </Button>
+  // );
+
   // ⬇️ 포스트잇 글씨 관련 메소드들
   // const takeState = (stat: any) => {
   //   setText({ ...stat });
@@ -154,7 +184,7 @@ function Room() {
           <div className={styles.sandbox}>
             <Stage
               width={windowX * 0.9}
-              height={windowY * 0.8}
+              height={windowY * 0.7}
               draggable
               onWheel={handleWheel}
               onClick={attachPostIt}
@@ -216,44 +246,44 @@ function Room() {
           </div>
           <div className={styles.toolbar}>
             <div className={styles.toolbox}>
-              <button type="button" onClick={changeIsPostIt}>
-                포스트잇
-              </button>
-              <button type="button" onClick={() => {}}>
-                펜
-              </button>
-              <button type="button" onClick={() => {}}>
-                형광펜
-              </button>
-              <button type="button" onClick={() => {}}>
-                지우개
-              </button>
-              <button type="button" onClick={() => {}}>
-                그래프
-              </button>
-              <button type="button" onClick={() => {}}>
-                찬반투표
-              </button>
-              <button type="button" onClick={() => {}}>
-                이미지
-              </button>
-              <button type="button" onClick={() => {}}>
-                도형
-              </button>
-              <button type="button" onClick={() => {}}>
-                멀티셀렉터
-              </button>
-              <button type="button" onClick={() => {}}>
-                휴지통
-              </button>
+              <div className={styles.firstLine}>
+                <button type="button" onClick={changeIsPostIt}>
+                  <img src={toolPost} className={styles.toolIcon} alt="d" />
+                </button>
+                <button type="button" onClick={() => {}}>
+                  <img src={toolPen} className={styles.toolIcon} alt="d" />
+                </button>
+                <button type="button" onClick={() => {}}>
+                  <img src={toolHigh} className={styles.toolIcon} alt="d" />
+                </button>
+                <button type="button" onClick={() => {}}>
+                  <img src={toolEraser} className={styles.toolIcon} alt="d" />
+                </button>
+                <button type="button" onClick={() => {}}>
+                  <img src={toolGraph} className={styles.toolIcon} alt="d" />
+                </button>
+              </div>
+              <div className={styles.secondLine}>
+                <button type="button" onClick={() => {}}>
+                  <img src={toolVote} className={styles.toolIcon} alt="d" />
+                </button>
+                <button type="button" onClick={() => {}}>
+                  <img src={toolImage} className={styles.toolIcon} alt="d" />
+                </button>
+                <button type="button" onClick={() => {}}>
+                  <img src={toolShape} className={styles.toolIcon} alt="d" />
+                </button>
+                <button type="button" onClick={() => {}}>
+                  <img src={toolSelector} className={styles.toolIcon} alt="d" />
+                </button>
+                <button type="button" onClick={() => {}}>
+                  <img src={toolTrashCan} className={styles.toolIcon} alt="d" />
+                </button>
+              </div>
             </div>
             <div className={styles.functionBox}>
-              <button type="button" onClick={() => {}}>
-                초대하기
-              </button>
-              <button type="button" onClick={() => {}}>
-                나가기
-              </button>
+              <Invite />
+              <PartExit />
             </div>
           </div>
         </div>
