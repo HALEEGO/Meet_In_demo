@@ -36,12 +36,12 @@ export default function DotsMobileStepper({ level, setLevel }: any) {
   return (
     <MobileStepper
       variant="dots"
-      steps={6}
+      steps={8}
       position="static"
       activeStep={level}
       className={classes.root}
       nextButton={
-        <Button size="small" className={classes.rBtn} onClick={handleNext} disabled={level === 5}>
+        <Button size="small" className={classes.rBtn} onClick={handleNext} disabled={level === 8}>
           Next
           {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
         </Button>
