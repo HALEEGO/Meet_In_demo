@@ -1,20 +1,68 @@
+import axios from 'axios';
 import React from 'react';
+// eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom';
 import Frame from '../common/frame';
 import styles from './signup.module.css';
 
 function SignUp() {
+  const [id, setID] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [name, setName] = React.useState('');
+
+  const createUser = (userID: string, userPW: string, userNAME: string) => {
+    axios
+      .post('http://192.168.0.133:8080/create/signup', {
+        userID,
+        userPW,
+        userNAME,
+      })
+      .then((response) => {
+        console.log(
+          `status : ${response.data.status}, message : ${response.data.message}, csMessage: ${response.data.customMessage}`,
+        );
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(
+          `status : ${error.response.data.status}, message : ${error.response.data.message}, csMessage: ${error.response.data.customMessage}`,
+        );
+      })
+      .finally(() => {
+        setID('');
+        setPassword('');
+        setName('');
+      });
+  };
+
   return (
     <Frame>
       <div className={styles.flexbody}>
         <div className={styles.center}>
-          <input type="text" className={styles.inputtext} />
-          <input type="text" className={styles.inputtext} />
-          <Link to="/home">
-            <button type="button" className={styles.button}>
-              SignUp
-            </button>
-          </Link>
+          <input
+            type="text"
+            value={id}
+            onChange={(e) => setID(e.target.value)}
+            placeholder="아이디"
+            className={styles.inputtext}
+          />
+          <input
+            type="text"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="비밀번호"
+            className={styles.inputtext}
+          />
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="이름"
+            className={styles.inputtext}
+          />
+          <button type="submit" onClick={() => createUser(id, password, name)} className={styles.button}>
+            SignUp
+          </button>
         </div>
       </div>
     </Frame>
