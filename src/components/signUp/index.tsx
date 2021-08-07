@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 // eslint-disable-next-line no-unused-vars
-import { Link } from 'react-router-dom';
+import { Link, Redirect, Route } from 'react-router-dom';
 import Frame from '../common/frame';
 import styles from './signup.module.css';
 
@@ -9,10 +9,11 @@ function SignUp() {
   const [id, setID] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [name, setName] = React.useState('');
+  const [isSignUp, setSignUp] = React.useState(false);
 
   const createUser = (userID: string, userPW: string, userNAME: string) => {
     axios
-      .post('http://192.168.0.133:8080/create/signup', {
+      .post('http://192.168.219.111:8080/create/signup', {
         userID,
         userPW,
         userNAME,
@@ -23,6 +24,7 @@ function SignUp() {
         );
         console.log(response);
       })
+      .then(() => setSignUp(true))
       .catch((error) => {
         console.log(
           `status : ${error.response.data.status}, message : ${error.response.data.message}, csMessage: ${error.response.data.customMessage}`,
@@ -34,6 +36,14 @@ function SignUp() {
         setName('');
       });
   };
+
+  if (isSignUp) {
+    return (
+      <Route>
+        <Redirect to="/login/" />;
+      </Route>
+    );
+  }
 
   return (
     <Frame>
