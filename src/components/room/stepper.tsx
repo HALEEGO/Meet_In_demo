@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
@@ -8,6 +9,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 const useStyles = makeStyles({
   root: {
     maxWidth: 400,
+    maxHeight: 30,
     flexGrow: 1,
   },
 
@@ -19,17 +21,16 @@ const useStyles = makeStyles({
   },
 });
 
-export default function DotsMobileStepper() {
+export default function DotsMobileStepper({ level, setLevel }: any) {
   const classes = useStyles();
   const theme = useTheme();
-  const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setLevel(level + 1);
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    setLevel(level - 1);
   };
 
   return (
@@ -37,16 +38,16 @@ export default function DotsMobileStepper() {
       variant="dots"
       steps={6}
       position="static"
-      activeStep={activeStep}
+      activeStep={level}
       className={classes.root}
       nextButton={
-        <Button size="small" className={classes.rBtn} onClick={handleNext} disabled={activeStep === 5}>
+        <Button size="small" className={classes.rBtn} onClick={handleNext} disabled={level === 5}>
           Next
           {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
         </Button>
       }
       backButton={
-        <Button size="small" className={classes.lBtn} onClick={handleBack} disabled={activeStep === 0}>
+        <Button size="small" className={classes.lBtn} onClick={handleBack} disabled={level === 0}>
           {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
           Back
         </Button>

@@ -33,6 +33,7 @@ function Room() {
   const windowY = window.innerHeight;
   const [x, setX] = useState(50); // 좌표 확인용 텍스트 위치
   const [y, setY] = useState(50); // ''
+  const [level, setLevel] = useState(0);
 
   const [stages, setStages] = useState({
     // 스테이지 스케일 및 xy 정보
@@ -178,7 +179,7 @@ function Room() {
 
   return (
     <div className={styles.root}>
-      <RoomNav />
+      <RoomNav level={level} setLevel={setLevel} />
       <div className={styles.body}>
         <div className={styles.boxandtool}>
           <div className={styles.sandbox}>
