@@ -19,9 +19,13 @@ import greenHat from '../../assets/icon/greenHat.png';
 function Navbar() {
   const [viewer, setViewer] = useState(false);
   const DisableElevation = () => (
-    <ButtonGroup disableElevation variant="contained" color="primary">
-      <Button onClick={() => setViewer(true)}>Level</Button>
-      <Button onClick={() => setViewer(false)}>Explain</Button>
+    <ButtonGroup disableElevation variant="contained" color="inherit">
+      <Button style={{ backgroundColor: '#f25c84' }} onClick={() => setViewer(true)}>
+        Level
+      </Button>
+      <Button style={{ backgroundColor: '#59d9d9' }} onClick={() => setViewer(false)}>
+        Explain
+      </Button>
     </ButtonGroup>
   );
 

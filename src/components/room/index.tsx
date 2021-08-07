@@ -129,13 +129,13 @@ function Room() {
 
   // 입퇴장 관련 버튼
   const Invite = () => (
-    <Button variant="contained" color="primary" disableElevation>
+    <Button style={{ backgroundColor: '#59d9d9' }} variant="contained" color="inherit" disableElevation>
       초대하기
     </Button>
   );
 
   const PartExit = () => (
-    <Button variant="contained" color="primary" disableElevation>
+    <Button style={{ backgroundColor: '#f25c84' }} variant="contained" color="inherit" disableElevation>
       나가기
     </Button>
   );
@@ -184,7 +184,7 @@ function Room() {
           <div className={styles.sandbox}>
             <Stage
               width={windowX * 0.9}
-              height={windowY * 0.7}
+              height={windowY * 0.77}
               draggable
               onWheel={handleWheel}
               onClick={attachPostIt}
