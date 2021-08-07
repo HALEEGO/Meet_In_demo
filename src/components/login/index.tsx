@@ -1,22 +1,28 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useContext } from 'react';
+
 // eslint-disable-next-line no-unused-vars
-import { Link } from 'react-router-dom';
+import { Link, Redirect, Route } from 'react-router-dom';
+import { AuthContext } from '../../context/loginContext';
 import Frame from '../common/frame';
 import styles from './login.module.css';
 
 function Login() {
   const [id, setID] = React.useState('');
   const [pw, setPW] = React.useState('');
+  const [isLogin, setIsLogin] = React.useState(false);
+  const { login, user }: any = useContext(AuthContext);
 
   const getUser = (userID: string, userPW: string) => {
     axios
-      .post('http://192.168.0.133:8080/read/login', {
+      .post('http://192.168.219.111:8080/read/login', {
         userID,
         userPW,
       })
       .then((response) => {
         console.log(response);
+        login(response.data.object.id, response.data.object.userNAME);
+        setIsLogin(true);
       })
       .catch((error) => {
         console.log(error.response);
@@ -26,6 +32,17 @@ function Login() {
         setPW('');
       });
   };
+  if (user.isAuth) {
+    return <div>이미 로그인하였습니다.</div>;
+  }
+  if (isLogin) {
+    setIsLogin(false);
+    return (
+      <Route>
+        <Redirect to="/makeRoom" />
+      </Route>
+    );
+  }
 
   return (
     <Frame>

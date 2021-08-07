@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/loginContext';
 import CustomizedSelects from '../common/dropdown';
 import Frame from '../common/frame';
 import styles from './makeRoom.module.css';
 
 export default function MakeRoom() {
+  const { user }: any = useContext(AuthContext);
+  console.log(user.isAuth);
   return (
     <Frame>
       <div className={styles.container}>
