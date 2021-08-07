@@ -11,6 +11,7 @@ export default function MakeRoom() {
         <div className={styles.makeDiv}>
           Meeting method
           <CustomizedSelects />
+          <input type="text" className={styles.inputtext} />
           <button type="button" className={styles.enterButton}>
             <Link to="room" className={styles.a}>
               Make

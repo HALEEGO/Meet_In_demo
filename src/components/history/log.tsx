@@ -7,6 +7,10 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 // import itemData from './itemData';
+import blueHat from '../../assets/icon/blueHat.png';
+import whiteHat from '../../assets/icon/whiteHat.png';
+import yellowHat from '../../assets/icon/yellowHat.png';
+import blackHat from '../../assets/icon/blackHat.png';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -51,21 +55,33 @@ export default function TitlebarImageList() {
       kind: 'brainstroming',
       date: '2021-07-01',
       key: 1,
+      img: blueHat,
+      title: '아몽더넥슽뤠븰',
+      author: '추ㅖ끼라웃',
     },
     {
       kind: '6-hat-thinking',
       date: '2021-07-02',
       key: 2,
+      img: whiteHat,
+      title: '붉은색푸른색',
+      author: '그사이삼초그짧은시간',
     },
     {
       kind: '5whys',
       date: '2021-07-03',
       key: 3,
+      img: yellowHat,
+      title: '냉짬뽕',
+      author: '오마카세',
     },
     {
       kind: '635method',
       date: '2021-07-04',
       key: 4,
+      img: blackHat,
+      title: '결선가게',
+      author: '해주세요',
     },
   ];
 
@@ -73,11 +89,11 @@ export default function TitlebarImageList() {
     <div className={classes.root}>
       <ImageList rowHeight={180} className={classes.imageList}>
         <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
-          <ListSubheader component="div">December</ListSubheader>
+          <ListSubheader component="div">Meet List</ListSubheader>
         </ImageListItem>
         {meetList.map((item) => (
           <ImageListItem key={item.key}>
-            <img src={item.date} alt={item.date} />
+            <img src={item.img} alt={item.date} />
             <ImageListItemBar
               title={item.kind}
               subtitle={<span>by: {item.date}</span>}
