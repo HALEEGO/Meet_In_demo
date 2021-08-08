@@ -209,9 +209,14 @@ function Room(props: any) {
       // 1. 방 입장할 때 참가자 리스트 - enterroom
       // 들어와 있는 사람만 받는 주소. 새로 들어온 사람이 누군지 리스트 받음.
       //
-      stompClient.subscribe(`topic/enterroom/${roomID}`, () => {
-        // const newMessage = JSON.parse(greeting.body);
-        // setMessage(newMessage.roomID);
+      // eslint-disable-next-line no-unused-vars
+      stompClient.subscribe(`/topic/enterroom/${roomID}`, (user) => {
+        const newUser = JSON.parse(user.body);
+        console.log(`newUser console: ${newUser.object.userNAME}`);
+        setPtList((prior: any) =>
+          // eslint-disable-next-line no-unused-expressions
+          [...prior, { userNAME: newUser.object.userNAME }],
+        );
       });
       // 2. 다음단계 알려주는 구독라인 - 호스트만 버튼 볼 수 있어서 호스트만 정보 던질 수 있음
       stompClient.subscribe(`topic/move/nextstep/${roomID}`, () => {
