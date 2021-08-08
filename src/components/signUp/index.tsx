@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 // eslint-disable-next-line no-unused-vars
 import { Link, Redirect, Route } from 'react-router-dom';
+import IP from '../../utils/type/constant/network';
 import Frame from '../common/frame';
 import styles from './signup.module.css';
 
@@ -13,7 +14,7 @@ function SignUp() {
 
   const createUser = (userID: string, userPW: string, userNAME: string) => {
     axios
-      .post('http://192.168.219.111:8080/create/signup', {
+      .post(`http://${IP}:8080/create/signup`, {
         userID,
         userPW,
         userNAME,

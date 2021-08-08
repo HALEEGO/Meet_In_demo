@@ -4,6 +4,7 @@ import React, { useContext } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { Link, Redirect, Route } from 'react-router-dom';
 import { AuthContext } from '../../context/loginContext';
+import IP from '../../utils/type/constant/network';
 import Frame from '../common/frame';
 import styles from './login.module.css';
 
@@ -15,12 +16,13 @@ function Login() {
 
   const getUser = (userID: string, userPW: string) => {
     axios
-      .post('http://192.168.219.111:8080/read/login', {
+      .post(`http://${IP}:8080/read/login`, {
         userID,
         userPW,
       })
       .then((response) => {
         console.log(response);
+        console.log(`통신 직후 : ${response.data.object.id}`);
         login(response.data.object.id, response.data.object.userNAME);
         setIsLogin(true);
       })
@@ -32,16 +34,15 @@ function Login() {
         setPW('');
       });
   };
-  if (user.isAuth) {
-    return <div>이미 로그인하였습니다.</div>;
-  }
   if (isLogin) {
-    setIsLogin(false);
     return (
       <Route>
         <Redirect to="/makeRoom" />
       </Route>
     );
+  }
+  if (user.isAuth) {
+    return <div>이미 로그인하였습니다.</div>;
   }
 
   return (

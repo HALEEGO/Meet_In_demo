@@ -28,7 +28,9 @@ type textType = {
   id: number;
 };
 
-function Room() {
+function Room(props: any) {
+  const { location } = props;
+  console.log(`룸에서 : ${location.state.roomID}`);
   const windowX = window.innerWidth;
   const windowY = window.innerHeight;
   const [x, setX] = useState(50); // 좌표 확인용 텍스트 위치

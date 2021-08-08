@@ -46,21 +46,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CustomizedSelects() {
+export default function CustomizedSelects({ type, setType }: any) {
   const classes = useStyles();
-  const [age, setAge] = React.useState('');
   const handleChange = (e) => {
-    setAge(e.target.value);
+    setType(e.target.value);
   };
   return (
     <div>
-      <FormControl className={classes.margin} />
       <FormControl className={classes.margin}>
         <InputLabel id="demo-customized-select-label">Method</InputLabel>
         <Select
           labelId="demo-customized-select-label"
           id="demo-customized-select"
-          value={age}
+          value={type}
           onChange={handleChange}
           input={<BootstrapInput />}
         >
@@ -68,7 +66,7 @@ export default function CustomizedSelects() {
             <em>None</em>
           </MenuItem>
           <MenuItem value={1}>BrainStorming</MenuItem>
-          <MenuItem value={2}>6HatThinking</MenuItem>
+          <MenuItem value="SIX_HAT">6HatThinking</MenuItem>
           <MenuItem value={3}>635method</MenuItem>
         </Select>
       </FormControl>

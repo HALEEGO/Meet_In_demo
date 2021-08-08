@@ -14,7 +14,9 @@ export const AuthProvider = ({ children }: any) => {
     isAuth: false,
   });
 
-  const login = ({ id, name }) => {
+  const login = (id, name) => {
+    console.log(`loginID: ${id}`);
+    console.log(name);
     setUser({
       id,
       name,
