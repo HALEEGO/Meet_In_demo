@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import axios from 'axios';
 import React, { useContext } from 'react';
 import { Redirect, Route } from 'react-router';
@@ -18,6 +19,9 @@ export default function MakeRoom() {
   const [roomID, setRoomID] = React.useState('');
   const [isMake, setIsMake] = React.useState(false);
   const [isEnter, setIsEnter] = React.useState(false);
+  let userList;
+  // eslint-disable-next-line no-unused-vars
+  let host;
 
   console.log(meetType);
 
@@ -31,6 +35,8 @@ export default function MakeRoom() {
       })
       .then((response) => {
         console.log(response);
+        userList = [];
+        host = response.data.object.hostUSER.userNAME;
         setRoomID(response.data.object.roomID);
         setIsMake(true);
       })
@@ -48,6 +54,9 @@ export default function MakeRoom() {
       })
       .then((response) => {
         console.log(response);
+        // userList = list<object>
+        userList = response.data.object.userPARTICIPANT;
+        host = response.data.object.hostUSER.userNAME;
         setRoomID(response.data.object.roomID);
         setIsEnter(true);
       })
@@ -63,7 +72,7 @@ export default function MakeRoom() {
         <Redirect
           to={{
             pathname: '/room',
-            state: { roomID, isHost: 'HOST', subject },
+            state: { roomID, isHost: 'HOST', subject, host },
           }}
         />
       </Route>
@@ -75,7 +84,7 @@ export default function MakeRoom() {
         <Redirect
           to={{
             pathname: '/room',
-            state: { roomID, isHost: 'NO', subject },
+            state: { roomID, isHost: 'NO', subject, userList, host },
           }}
         />
       </Route>
