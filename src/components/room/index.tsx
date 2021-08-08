@@ -36,16 +36,21 @@ let sockJS: WebSocket;
 
 function Room(props: any) {
   const { location } = props;
+  console.log(location);
+
   // eslint-disable-next-line no-unused-vars
-  const { roomID, userList } = location.state;
-  console.log(`룸에서 : ${location.state.roomID}`);
+  const { roomID, userList, host, isHost, subject } = location.state;
+  console.log(`${roomID}`);
+  console.log(`유저리스트 0번째 출력해보기 : ${userList}`);
+  console.log(host);
   const windowX = window.innerWidth; // 화면 전체 가로 받기
   const windowY = window.innerHeight; // 화면 전체 세로 받기
   // --------------------------------------------------------------------
 
   // ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️회의 관련 state⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
   const [level, setLevel] = useState<number>(); // 모자 단계 - 초기값 undefined
-  // const [ptList, setPtList] = useState<Array<Object>>(userList); // 참가자 리스트
+  // eslint-disable-next-line no-unused-vars
+  const [ptList, setPtList] = useState(userList); // 참가자 리스트
   // --------------------------------------------------------------------
 
   // ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️ : 콘바 관련 state ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
@@ -334,12 +339,8 @@ function Room(props: any) {
           </div>
         </div>
         <div className={styles.personList}>
-          <div>HOST</div>
-          <div>part1</div>
-          <div>part2</div>
-          <div>part3</div>
-          <div>part4</div>
-          <div>part5</div>
+          <div>{host}</div>
+          {ptList.map((user: any) => (user.userNAME === host ? <span /> : <div>{user.userNAME}</div>))}
         </div>
       </div>
     </div>

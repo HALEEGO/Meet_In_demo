@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import axios from 'axios';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Redirect, Route } from 'react-router';
 import { AuthContext } from '../../context/loginContext';
 import IP from '../../utils/type/constant/network';
@@ -14,14 +14,14 @@ export default function MakeRoom() {
   console.log(user.id);
   console.log(user.name);
   // eslint-disable-next-line no-unused-vars
-  const [meetType, setMeetType] = React.useState('');
-  const [subject, setSubject] = React.useState('');
-  const [roomID, setRoomID] = React.useState('');
-  const [isMake, setIsMake] = React.useState(false);
-  const [isEnter, setIsEnter] = React.useState(false);
-  let userList;
+  const [meetType, setMeetType] = useState('');
+  const [subject, setSubject] = useState('');
+  const [roomID, setRoomID] = useState('');
+  const [isMake, setIsMake] = useState(false);
+  const [isEnter, setIsEnter] = useState(false);
+  const [userList, setUserList] = useState<Array<any>>();
+  const [host, setHost] = useState('');
   // eslint-disable-next-line no-unused-vars
-  let host;
 
   console.log(meetType);
 
@@ -35,9 +35,11 @@ export default function MakeRoom() {
       })
       .then((response) => {
         console.log(response);
-        userList = [];
-        host = response.data.object.hostUSER.userNAME;
+        setHost(response.data.object.hostUSER.userNAME);
         setRoomID(response.data.object.roomID);
+        setUserList([{ userNAME: response.data.object.hostUSER.userNAME }]);
+        console.log(` userlist 확인  : ${userList}`);
+
         setIsMake(true);
       })
       .catch((error) => {
@@ -54,10 +56,11 @@ export default function MakeRoom() {
       })
       .then((response) => {
         console.log(response);
-        // userList = list<object>
-        userList = response.data.object.userPARTICIPANT;
-        host = response.data.object.hostUSER.userNAME;
+        console.log(response.data.object.userPARTICIPANT);
+        setUserList(response.data.object.userPARTICIPANT);
+        setHost(response.data.object.hostUSER.userNAME);
         setRoomID(response.data.object.roomID);
+        console.log(userList);
         setIsEnter(true);
       })
       .catch((error) => {
@@ -72,7 +75,7 @@ export default function MakeRoom() {
         <Redirect
           to={{
             pathname: '/room',
-            state: { roomID, isHost: 'HOST', subject, host },
+            state: { roomID, isHost: 'HOST', subject, userList, host },
           }}
         />
       </Route>
@@ -84,7 +87,7 @@ export default function MakeRoom() {
         <Redirect
           to={{
             pathname: '/room',
-            state: { roomID, isHost: 'NO', subject, userList, host },
+            state: { roomID, isHost: 'NO', userList, host },
           }}
         />
       </Route>
