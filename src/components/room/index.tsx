@@ -35,7 +35,7 @@ function Room(props: any) {
   const windowY = window.innerHeight;
   const [x, setX] = useState(50); // 좌표 확인용 텍스트 위치
   const [y, setY] = useState(50); // ''
-  const [level, setLevel] = useState(0);
+  const [level, setLevel] = useState<number>();
 
   const [stages, setStages] = useState({
     // 스테이지 스케일 및 xy 정보
