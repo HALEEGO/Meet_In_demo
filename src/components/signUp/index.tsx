@@ -3,7 +3,7 @@ import React from 'react';
 // eslint-disable-next-line no-unused-vars
 import { Link, Redirect, Route } from 'react-router-dom';
 import IP from '../../utils/type/constant/network';
-import Frame from '../common/frame';
+import SgFrame from './sgFrame';
 import styles from './signup.module.css';
 
 function SignUp() {
@@ -47,7 +47,7 @@ function SignUp() {
   }
 
   return (
-    <Frame>
+    <SgFrame>
       <div className={styles.flexbody}>
         <div className={styles.center}>
           <input
@@ -76,7 +76,7 @@ function SignUp() {
           </button>
         </div>
       </div>
-    </Frame>
+    </SgFrame>
   );
 }
 

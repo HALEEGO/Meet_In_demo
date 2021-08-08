@@ -25,7 +25,7 @@
     margin: 20px 10px;
     border-radius: 25px;
     font-weight: bold;
-    border: 2px solid #7aebdf;
+    border: 2.5px solid #32dfce;
     background: transparent;
     color: #fff;
     cursor: pointer;
@@ -47,8 +47,10 @@
 
 .button:hover span {
     width: 100%;
+    
 }
 
 .button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
     border: none;
 }

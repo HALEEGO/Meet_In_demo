@@ -5,7 +5,7 @@ import React, { useContext } from 'react';
 import { Link, Redirect, Route } from 'react-router-dom';
 import { AuthContext } from '../../context/loginContext';
 import IP from '../../utils/type/constant/network';
-import Frame from '../common/frame';
+import LgFrame from './lgFrame';
 import styles from './login.module.css';
 
 function Login() {
@@ -46,7 +46,7 @@ function Login() {
   }
 
   return (
-    <Frame>
+    <LgFrame>
       <div className={styles.flexbody}>
         <div className={styles.center}>
           <input
@@ -68,7 +68,7 @@ function Login() {
           </button>
         </div>
       </div>
-    </Frame>
+    </LgFrame>
   );
 }
 
