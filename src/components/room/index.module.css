@@ -89,9 +89,11 @@
 .personList div {
     display: flex;
     justify-content: center;
+    align-items: center;
     border-radius: 7px;
     box-shadow:0px 5px 10px 0.5px rgba(0,0,0,0.1);
     margin: 20px;
     /* background-color: #59d9d9; */
-    width: 100%;
+    width: 15%;
+    height: 90%;
 }

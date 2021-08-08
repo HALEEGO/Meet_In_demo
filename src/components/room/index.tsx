@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Stage, Layer, Text } from 'react-konva';
+import Stomp from 'stompjs';
+import SockJS from 'sockjs-client';
 import Button from '@material-ui/core/Button';
 import styles from './index.module.css';
 import RoomNav from './roomNav';
@@ -14,6 +16,7 @@ import toolShape from '../../assets/icon/shapes.png';
 import toolSelector from '../../assets/icon/selection.png';
 import toolImage from '../../assets/icon/picture.png';
 import toolTrashCan from '../../assets/icon/delete.png';
+import IP from '../../utils/type/constant/network';
 
 type textType = {
   textEditVisible: boolean;
@@ -28,11 +31,26 @@ type textType = {
   id: number;
 };
 
+let stompClient: Stomp.Client;
+let sockJS: WebSocket;
+
 function Room(props: any) {
   const { location } = props;
-  console.log(`룸에서 : ${location.state.roomID}`);
+  console.log(location);
+
+  // eslint-disable-next-line no-unused-vars
+  const { roomID, userList, host, isHost, subject } = location.state;
+  console.log(`${roomID}`);
+  console.log(`유저리스트 0번째 출력해보기 : ${userList}`);
+  console.log(host);
   const windowX = window.innerWidth; // 화면 전체 가로 받기
   const windowY = window.innerHeight; // 화면 전체 세로 받기
+  // --------------------------------------------------------------------
+
+  // ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️회의 관련 state⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+  const [level, setLevel] = useState<number>(); // 모자 단계 - 초기값 undefined
+  // eslint-disable-next-line no-unused-vars
+  const [ptList, setPtList] = useState(userList); // 참가자 리스트
   // --------------------------------------------------------------------
 
   // ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️ : 콘바 관련 state ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
@@ -179,12 +197,35 @@ function Room(props: any) {
       ]);
     }
   };
+
   // --------------------------------------------------------
   // --------------------------------------------------------
 
-  // ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️회의 진행 단계 관련 state⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
-  const [level, setLevel] = useState<number>(); // 모자 단계 - 초기값 undefined
-  // --------------------------------------------------------------------
+  // 서버 연결
+  React.useEffect(() => {
+    sockJS = new SockJS(`http://${IP}:8080/meetin`);
+    stompClient = Stomp.over(sockJS);
+    stompClient.connect({}, () => {
+      // 1. 방 입장할 때 참가자 리스트 - enterroom
+      // 들어와 있는 사람만 받는 주소. 새로 들어온 사람이 누군지 리스트 받음.
+      //
+      stompClient.subscribe(`topic/enterroom/${roomID}`, () => {
+        // const newMessage = JSON.parse(greeting.body);
+        // setMessage(newMessage.roomID);
+      });
+      // 2. 다음단계 알려주는 구독라인 - 호스트만 버튼 볼 수 있어서 호스트만 정보 던질 수 있음
+      stompClient.subscribe(`topic/move/nextstep/${roomID}`, () => {
+        // const newMessage = JSON.parse(greeting.body);
+        // setMessage(newMessage.roomID);
+      });
+      // 3. 포스트잇 위치
+      stompClient.subscribe(`topic/move/postit/${roomID}`, () => {
+        // const newMessage = JSON.parse(greeting.body);
+        // setMessage(newMessage.roomID);
+      });
+    });
+  }, []);
+  // ------------------------------------------------------------------------
 
   return (
     <div className={styles.root}>
@@ -298,12 +339,8 @@ function Room(props: any) {
           </div>
         </div>
         <div className={styles.personList}>
-          <div>HOST</div>
-          <div>part1</div>
-          <div>part2</div>
-          <div>part3</div>
-          <div>part4</div>
-          <div>part5</div>
+          <div>{host}</div>
+          {ptList.map((user: any) => (user.userNAME === host ? <span /> : <div>{user.userNAME}</div>))}
         </div>
       </div>
     </div>
