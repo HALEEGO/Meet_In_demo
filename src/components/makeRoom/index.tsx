@@ -5,7 +5,7 @@ import { Redirect, Route } from 'react-router';
 import { AuthContext } from '../../context/loginContext';
 import IP from '../../utils/type/constant/network';
 import CustomizedSelects from '../common/dropdown';
-import Frame from '../common/frame';
+import MrFrame from './mrFrame';
 import styles from './makeRoom.module.css';
 
 export default function MakeRoom() {
@@ -94,7 +94,7 @@ export default function MakeRoom() {
     );
   }
   return (
-    <Frame>
+    <MrFrame>
       <div className={styles.container}>
         <div className={styles.makeDiv}>
           Meeting method
@@ -126,7 +126,7 @@ export default function MakeRoom() {
           </button>
         </div>
       </div>
-    </Frame>
+    </MrFrame>
   );
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './navbar.module.css';
-import meetinlogo from '../../assets/image/mintlogo.png';
+import meetinlogo from '../../assets/image/logobyungchan.png';
 
 function Navbar() {
   return (

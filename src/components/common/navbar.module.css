@@ -8,11 +8,13 @@
     justify-content: space-between;
     align-items: center;
     z-index: 2;
-    position: fixed;
-
+    height: 13%;
+    /* position: fixed; */
+    
 }
 
 .navbar ul li {
+    font-family: 'esaManRu';
     list-style-type: none;
     display: inline-block;
     margin: 0 20px;
@@ -27,7 +29,7 @@
     content: '';
     height: 3px;
     width: 0;
-    background-color: #57f1e2;
+    background-color: #32dfce;
     position: absolute;
     left: 0;
     bottom: -10px;
@@ -41,6 +43,7 @@
 .meetIn {
     width: 200px;
     cursor: pointer;
-    height: 60px;
+    height: 200px;
     z-index: 10000;
+    /* transform: rotate(10deg); */
 }
