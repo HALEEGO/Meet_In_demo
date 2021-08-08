@@ -31,11 +31,13 @@ type textType = {
 function Room(props: any) {
   const { location } = props;
   console.log(`룸에서 : ${location.state.roomID}`);
-  const windowX = window.innerWidth;
-  const windowY = window.innerHeight;
+  const windowX = window.innerWidth; // 화면 전체 가로 받기
+  const windowY = window.innerHeight; // 화면 전체 세로 받기
+  // --------------------------------------------------------------------
+
+  // ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️ : 콘바 관련 state ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
   const [x, setX] = useState(50); // 좌표 확인용 텍스트 위치
   const [y, setY] = useState(50); // ''
-  const [level, setLevel] = useState<number>();
 
   const [stages, setStages] = useState({
     // 스테이지 스케일 및 xy 정보
@@ -54,7 +56,8 @@ function Room(props: any) {
 
   const [selectedId, selectShape] = React.useState(null); // 클릭시 선택된 포스트잇 아이디
 
-  // ------------ ⬆️ : state ------- ⬇️ : method ---------
+  // ------------------------------------------------------------------------------
+  // ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️ 콘바 관련 method ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
 
   // 포스트잇 상태 불리언 바꿔주는 메소드
   const changeIsPostIt = () => {
@@ -149,12 +152,9 @@ function Room(props: any) {
   //   </Button>
   // );
 
-  // ⬇️ 포스트잇 글씨 관련 메소드들
-  // const takeState = (stat: any) => {
-  //   setText({ ...stat });
-  // };
-
+  // ⬇️⬇️⬇️⬇️⬇️⬇️⬇️ 포스트잇 글씨 관련 메소드들 ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
   // eslint-disable-next-line no-unused-vars
+  // 엔터 누르면 텍스트 에이리어 사라지게 해주기
   const handleTextareaKeyDown = (e: any) => {
     if (e.keyCode === 13) {
       // 13 == enter
@@ -167,6 +167,7 @@ function Room(props: any) {
     }
   };
 
+  // 텍스트 에이리어 이벤트 인식해서 포스트잇 텍스트 바꿔주기
   // eslint-disable-next-line no-unused-vars
   const handleTextEdit = (e: any) => {
     const newText = [...text];
@@ -178,6 +179,12 @@ function Room(props: any) {
       ]);
     }
   };
+  // --------------------------------------------------------
+  // --------------------------------------------------------
+
+  // ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️회의 진행 단계 관련 state⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+  const [level, setLevel] = useState<number>(); // 모자 단계 - 초기값 undefined
+  // --------------------------------------------------------------------
 
   return (
     <div className={styles.root}>
