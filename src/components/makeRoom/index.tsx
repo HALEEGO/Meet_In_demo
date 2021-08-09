@@ -9,11 +9,9 @@ import MrFrame from './mrFrame';
 import styles from './makeRoom.module.css';
 
 export default function MakeRoom() {
-  // eslint-disable-next-line no-unused-vars
   const { user }: any = useContext(AuthContext);
   console.log(user.id);
   console.log(user.name);
-  // eslint-disable-next-line no-unused-vars
   const [meetType, setMeetType] = useState('');
   const [subject, setSubject] = useState('');
   const [roomID, setRoomID] = useState('');
@@ -21,7 +19,6 @@ export default function MakeRoom() {
   const [isEnter, setIsEnter] = useState(false);
   const [userList, setUserList] = useState<Array<any>>();
   const [host, setHost] = useState('');
-  // eslint-disable-next-line no-unused-vars
 
   console.log(meetType);
 
@@ -129,16 +126,3 @@ export default function MakeRoom() {
     </MrFrame>
   );
 }
-
-/* <div className={styles.roomNumber}>
-<div>
-  room
-  <input type="text" />
-</div>
-</div>
-<div className={styles.roomPass}>
-<div>
-  password
-  <input type="text" />
-</div>
-</div> */

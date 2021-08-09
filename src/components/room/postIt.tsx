@@ -1,9 +1,10 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect, useRef } from 'react';
+import shape from '@material-ui/core/styles/shape';
+import React, { useEffect, useRef } from 'react';
 import { Rect, Transformer, Group, Text } from 'react-konva';
 
 // eslint-disable-next-line no-unused-vars
-const PostIt = ({ shapeProps, isSelected, onSelect, onChange, takeState, text, index }: any) => {
+const PostIt = ({ shapeProps, isSelected, onSelect, onChange, takeState, text, index, setPI, PI, user }: any) => {
   const shapeRef = useRef<any>();
   const trRef = useRef<any>();
 
@@ -26,21 +27,52 @@ const PostIt = ({ shapeProps, isSelected, onSelect, onChange, takeState, text, i
 
   return (
     <>
-      <Group draggable>
+      <Group
+        draggable
+        x={0}
+        y={0}
+        // width={shapeProps.width}
+        // height={shapeProps.height}
+        onDragEnd={(e) => {
+          console.log(shapeProps.x + e.target.x());
+          console.log(shapeProps.y + e.target.y());
+          const temp = PI.slice();
+          temp[index] = {
+            width: shapeProps.width,
+            height: shapeProps.height,
+            fill: shapeProps.fill,
+            shadowBlur: shapeProps.shadowBlur,
+            id: shapeProps.id,
+            x: shapeProps.x + e.target.x(),
+            y: shapeProps.y + e.target.y(),
+          };
+          setPI([...temp]);
+
+          onChange({
+            locationX: shapeProps.x + e.target.x(),
+            locationY: shapeProps.y + e.target.y(),
+            width: shapeProps.width,
+            height: shapeProps.height,
+            postitCONTEXT: text[index].textValue,
+            postitCOLOR: shapeProps.fill,
+            postitID: shapeProps.id,
+            user: { userNAME: user.name, id: user.id },
+          });
+          e.target.x(0);
+          e.target.y(0);
+        }}
+      >
         <Rect
           onClick={onSelect}
           onTap={onSelect}
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          {...shapeProps}
+          width={shapeProps.width}
+          height={shapeProps.height}
+          fill={shapeProps.fill}
+          id={shapeProps.id}
+          x={shapeProps.x}
+          y={shapeProps.y}
+          shadowBlur={shapeProps.shadowBlur}
           ref={shapeRef}
-          onDragEnd={(e) => {
-            // const stage: any = e.target.getStage();
-            onChange({
-              ...shapeProps,
-              x: e.target.x(), // / scale.scale - stage.x() / scale.scale,
-              y: e.target.y(), // / scale.scale - stage.y() / scale.scale,
-            });
-          }}
           // eslint-disable-next-line no-unused-vars
           onTransformEnd={(e) => {
             // transformer is changing scale of the node
@@ -50,61 +82,47 @@ const PostIt = ({ shapeProps, isSelected, onSelect, onChange, takeState, text, i
             const node = shapeRef.current;
             const scaleX = node.scaleX();
             const scaleY = node.scaleY();
-
             // we will reset it back
             node.scaleX(1);
             node.scaleY(1);
+            const temp = PI.slice();
+            temp[index] = {
+              width: Math.max(50, node.width() * scaleX),
+              height: Math.max(50, node.height() * scaleY),
+              fill: shapeProps.fill,
+              shadowBlur: shapeProps.shadowBlur,
+              id: shapeProps.id,
+              x: e.target.x(),
+              y: e.target.y(),
+            };
+            setPI([...temp]);
             onChange({
-              ...shapeProps,
-              x: node.x(),
-              y: node.y(),
-              // set minimal value
-              width: Math.max(5, node.width() * scaleX),
-              height: Math.max(node.height() * scaleY),
+              locationX: e.target.x(),
+              locationY: e.target.y(),
+              width: Math.max(50, node.width() * scaleX),
+              height: Math.max(50, node.height() * scaleY),
+              postitCONTEXT: text[index].textValue,
+              postitCOLOR: shapeProps.fill,
+              postitID: shapeProps.id,
+              user: { userNAME: user.name, id: user.id },
             });
+            console.log(`text resize xPos ${e.target.x()}`);
           }}
         />
         <Text
           fontSize={15}
           align="left"
           text={text[index]?.textValue ?? ''}
+          width={shapeProps.width}
+          height={shapeProps.height}
           x={shapeProps.x}
           y={shapeProps.y}
           wrap="word"
-          width={shapeProps.width}
-          height={shapeProps.height}
           onClick={onSelect}
           onDblClick={(e) => handleTextDblClick(e)}
-          onDragEnd={(e) => {
-            // const stage: any = e.target.getStage();
-            onChange({
-              ...shapeProps,
-              x: e.target.x(), // / scale.scale - stage.x() / scale.scale,
-              y: e.target.y(), // / scale.scale - stage.y() / scale.scale,
-            });
-          }}
           // eslint-disable-next-line no-unused-vars
-          onTransformEnd={(e) => {
-            // transformer is changing scale of the node
-            // and NOT its width or height
-            // but in the store we have only width and height
-            // to match the data better we will reset scale on transform end
-            const node = shapeRef.current;
-            const scaleX = node.scaleX();
-            const scaleY = node.scaleY();
 
-            // we will reset it back
-            node.scaleX(1);
-            node.scaleY(1);
-            onChange({
-              ...shapeProps,
-              x: node.x(),
-              y: node.y(),
-              // set minimal value
-              width: Math.max(5, node.width() * scaleX),
-              height: Math.max(node.height() * scaleY),
-            });
-          }}
+          // eslint-disable-next-line no-unused-vars
         />
       </Group>
       {isSelected && (

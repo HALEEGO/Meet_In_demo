@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { Link, Redirect, Route } from 'react-router-dom';
 import IP from '../../utils/type/constant/network';
@@ -7,10 +7,10 @@ import SgFrame from './sgFrame';
 import styles from './signup.module.css';
 
 function SignUp() {
-  const [id, setID] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [name, setName] = React.useState('');
-  const [isSignUp, setSignUp] = React.useState(false);
+  const [id, setID] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [isSignUp, setSignUp] = useState(false);
 
   const createUser = (userID: string, userPW: string, userNAME: string) => {
     axios

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-// eslint-disable-next-line no-unused-vars
 import Button from '@material-ui/core/Button';
 import styles from './navbar.module.css';
 
@@ -17,10 +16,8 @@ import blackHat from '../../assets/icon/blackHat.png';
 import start from '../../assets/icon/start.png';
 
 function Navbar({ level, setLevel }: any) {
-  // eslint-disable-next-line no-unused-vars
   const [viewer, setViewer] = useState(false);
   // const [level, setLevel] = useState(0);
-  // eslint-disable-next-line no-unused-vars
   const DisableElevation = () => (
     <ButtonGroup disableElevation variant="contained" color="inherit">
       {level === undefined ? (

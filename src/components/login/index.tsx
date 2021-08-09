@@ -1,17 +1,15 @@
 import axios from 'axios';
-import React, { useContext } from 'react';
-
-// eslint-disable-next-line no-unused-vars
-import { Link, Redirect, Route } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Redirect, Route } from 'react-router-dom';
 import { AuthContext } from '../../context/loginContext';
 import IP from '../../utils/type/constant/network';
 import LgFrame from './lgFrame';
 import styles from './login.module.css';
 
 function Login() {
-  const [id, setID] = React.useState('');
-  const [pw, setPW] = React.useState('');
-  const [isLogin, setIsLogin] = React.useState(false);
+  const [id, setID] = useState('');
+  const [pw, setPW] = useState('');
+  const [isLogin, setIsLogin] = useState(false);
   const { login, user }: any = useContext(AuthContext);
 
   const getUser = (userID: string, userPW: string) => {
@@ -73,5 +71,3 @@ function Login() {
 }
 
 export default Login;
-
-// login 버튼이 span으로 감싸져야하는데 그러면 ui 에러남
