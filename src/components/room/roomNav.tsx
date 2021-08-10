@@ -16,8 +16,19 @@ import blackHat from '../../assets/icon/blackHat.png';
 import startImage from '../../assets/icon/start.png';
 
 // eslint-disable-next-line no-unused-vars
-function Navbar({ level, setLevel, latestLevel, setLatestLevel, title, start, sendNextLevel }: any) {
+function Navbar({
+  level,
+  setLevel,
+  latestLevel,
+  setLatestLevel,
+  title,
+  start,
+  sendNextLevel,
+  oldStage,
+  setOldStage,
+}: any) {
   const [viewer, setViewer] = useState(false);
+  // const { user }: any = useContext(AuthContext);
   // const [level, setLevel] = useState(0);
   const DisableElevation = () => (
     <ButtonGroup disableElevation variant="contained" color="inherit">
@@ -66,6 +77,8 @@ function Navbar({ level, setLevel, latestLevel, setLatestLevel, title, start, se
         latestLevel={latestLevel}
         setLatestLevel={setLatestLevel}
         sendNextLevel={sendNextLevel}
+        oldStage={oldStage}
+        setOldStage={setOldStage}
       />
     );
     if (level === 0) {

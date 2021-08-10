@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Link, Redirect, Route } from 'react-router-dom';
 import { AuthContext } from '../../context/loginContext';
 import IP from '../../utils/type/constant/network';
 import LgFrame from './lgFrame';
@@ -62,9 +62,14 @@ function Login() {
             className={styles.inputtext}
           />
           <button type="submit" onClick={() => getUser(id, pw)} className={styles.button}>
-            Login
+            로그인
           </button>
         </div>
+        <Link to="/signup">
+          <button type="button" className={styles.signupBtn}>
+            아직 아이디가 없으신가요? [가입하기]
+          </button>
+        </Link>
       </div>
     </LgFrame>
   );

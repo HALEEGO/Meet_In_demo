@@ -95,7 +95,7 @@ export default function MakeRoom() {
     <MrFrame>
       <div className={styles.container}>
         <div className={styles.makeDiv}>
-          회의 기법
+          <div className={styles.title}>회의 만들기</div>
           <CustomizedSelects type={meetType} setType={setMeetType} />
           <input
             type="text"
@@ -111,7 +111,7 @@ export default function MakeRoom() {
       </div>
       <div className={styles.EnterContainer}>
         <div className={styles.makeDiv}>
-          방 번호
+          <div className={styles.title}>참여하기</div>
           <input
             type="text"
             placeholder="방번호"

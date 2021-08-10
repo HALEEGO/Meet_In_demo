@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+// eslint-disable-next-line no-unused-vars
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -9,14 +10,18 @@ import InputBase from '@material-ui/core/InputBase';
 const BootstrapInput = withStyles((theme) => ({
   root: {
     'label + &': {
-      marginTop: theme.spacing(3),
+      marginTop: theme.spacing(5),
     },
   },
   input: {
-    borderRadius: 4,
+    borderRadius: 25,
     position: 'relative',
-    backgroundColor: theme.palette.background.paper,
-    border: '1px solid #ced4da',
+    // backgroundColor: theme.palette.background.paper,
+    placeContent: '회의 기법을 선택해 주세요.',
+    placeItems: '회의 기법을 선택해 주세요.',
+    placeSelf: '회의 기법을 선택해 주세요.',
+    border: '2px solid #57bfc9',
+    width: 210,
     fontSize: 16,
     padding: '10px 26px 10px 12px',
     transition: theme.transitions.create(['border-color', 'box-shadow']),
@@ -42,7 +47,7 @@ const BootstrapInput = withStyles((theme) => ({
 
 const useStyles = makeStyles((theme) => ({
   margin: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(0),
   },
 }));
 
@@ -54,7 +59,7 @@ export default function CustomizedSelects({ type, setType }: any) {
   return (
     <div>
       <FormControl className={classes.margin}>
-        <InputLabel id="demo-customized-select-label">Method</InputLabel>
+        {/* <InputLabel id="demo-customized-select-label">회의 기법</InputLabel> */}
         <Select
           labelId="demo-customized-select-label"
           id="demo-customized-select"
@@ -62,12 +67,12 @@ export default function CustomizedSelects({ type, setType }: any) {
           onChange={handleChange}
           input={<BootstrapInput />}
         >
-          <MenuItem value="">
-            <em>None</em>
+          <MenuItem selected value="회의기법을 선택해 주세요.">
+            회의기법을 선택해 주세요.
           </MenuItem>
-          <MenuItem value={1}>BrainStorming</MenuItem>
-          <MenuItem value="SIX_HAT">6HatThinking</MenuItem>
-          <MenuItem value={3}>635method</MenuItem>
+          <MenuItem value={1}>브레인스토밍</MenuItem>
+          <MenuItem value="SIX_HAT">6색 사고 모자</MenuItem>
+          <MenuItem value={3}>6-3-5 회의</MenuItem>
         </Select>
       </FormControl>
     </div>

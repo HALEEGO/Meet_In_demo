@@ -4,7 +4,20 @@ import React, { useEffect, useRef } from 'react';
 import { Rect, Transformer, Group, Text } from 'react-konva';
 
 // eslint-disable-next-line no-unused-vars
-const PostIt = ({ shapeProps, isSelected, onSelect, onChange, takeState, text, index, setPI, PI, user }: any) => {
+const PostIt = ({
+  shapeProps,
+  isSelected,
+  onSelect,
+  onChange,
+  takeState,
+  text,
+  index,
+  setPI,
+  PI,
+  user,
+  // eslint-disable-next-line no-unused-vars
+  level,
+}: any) => {
   const shapeRef = useRef<any>();
   const trRef = useRef<any>();
 
@@ -115,8 +128,10 @@ const PostIt = ({ shapeProps, isSelected, onSelect, onChange, takeState, text, i
           text={text[index]?.textValue ?? ''}
           width={shapeProps.width}
           height={shapeProps.height}
+          fill="#f9f9f9"
+          fontStyle="BOLD"
           x={shapeProps.x}
-          y={shapeProps.y}
+          y={shapeProps.y + 3}
           wrap="word"
           onClick={onSelect}
           onDblClick={(e) => handleTextDblClick(e)}

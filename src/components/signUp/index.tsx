@@ -72,7 +72,7 @@ function SignUp() {
             className={styles.inputtext}
           />
           <button type="submit" onClick={() => createUser(id, password, name)} className={styles.button}>
-            SignUp
+            가입하기
           </button>
         </div>
       </div>

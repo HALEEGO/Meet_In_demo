@@ -1,6 +1,8 @@
 .flexbody {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     padding-top: 80px;
 }
 
@@ -9,38 +11,48 @@
 .center {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 25%;
     border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color:transparent;
     align-items: center;
 }
 
 
 .inputtext {
-    width: 200px;
+    width: 250px;
     padding: 15px 0;
     text-align: center;
-    margin: 10px 10px;
+    margin-bottom: 10px;
     border-radius: 25px;
     font-weight: bold;
-    border: 2px solid #009688;
+    border: 2px solid #57bfc9;
     background: transparent;
     color: #fff;
     position: relative;
     overflow: hidden;
 }
+.inputtext::placeholder{
+    color: #fff;
+    font-weight:400;
+}
 
 .button {
-    width: 200px;
+    width: 250px;
     padding: 15px 0;
     text-align: center;
     margin: 10px 10px;
     border-radius: 25px;
     font-weight: bold;
-    border: 2px solid #009688;
-    background: transparent;
+    font-size: 14px;
+    border: 2px solid #57bfc9;
+    background: #57bfc9;
     color: #fff;
     position: relative;
     overflow: hidden;
     cursor: pointer;
+}
+.signupBtn {
+    background-color: transparent;
+    color: rgb(231, 231, 231);
+    border: 0;
 }

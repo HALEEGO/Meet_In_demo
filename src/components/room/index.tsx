@@ -18,19 +18,20 @@ import toolImage from '../../assets/icon/picture.png';
 import toolTrashCan from '../../assets/icon/delete.png';
 import IP from '../../utils/type/constant/network';
 import { AuthContext } from '../../context/loginContext';
+// import firstModal from './firstModal';
 
-type textType = {
-  textEditVisible: boolean;
-  textX: number;
-  fill: string;
-  textY: number;
-  textValue: string;
-  fontSize: number;
-  width: number;
-  fontStyle: string;
-  align: string;
-  id: number;
-};
+// type textType = {
+//   textEditVisible: boolean;
+//   textX: number;
+//   fill: string;
+//   textY: number;
+//   textValue: string;
+//   fontSize: number;
+//   width: number;
+//   fontStyle: string;
+//   align: string;
+//   id: number;
+// };
 //
 //
 //
@@ -86,16 +87,28 @@ function Room(props: any) {
     x: 0,
     y: 0,
   });
+  //
+  //
+  //
+  //
+  const [postIts, setPostIts] = useState<Array<any>>([]); // 포스트잇 스타일 리스트
+
+  const [oldStage, setOldStage] = useState<Array<any>>([]);
+
+  const [oldText, setOldText] = useState<Array<any>>([]);
+  console.log(` old stage ${JSON.stringify(oldStage, null, ' ')}`);
+  console.log(` new Stage : ${JSON.stringify(postIts, null, ' ')}`);
+  console.log(` oldText : ${JSON.stringify(oldText, null, ' ')}`);
 
   const [isPostIt, setIsPostIt] = useState(false); // 포스트잇 버튼 클릭 했는가
 
-  const [postIts, setPostIts] = useState<Array<any>>([]); // 포스트잇 스타일 리스트
-
-  const [text, setText] = useState<Array<textType>>([]); // 포스트잇 글씨 -> postIts랑 index 번호 같음
+  const [text, setText] = useState<Array<any>>([]); // 포스트잇 글씨 -> postIts랑 index 번호 같음
+  console.log(` current Text : ${JSON.stringify(text, null, ' ')}`);
 
   const [postItID, setPostItID] = useState<number>(0); // 포스트잇 아이디
 
   const [selectedId, selectShape] = React.useState(null); // 클릭시 선택된 포스트잇 아이디
+
   //
   //
   //
@@ -107,6 +120,12 @@ function Room(props: any) {
   refPostItID.current = postItID;
   const refText = useRef(text);
   refText.current = text;
+  const refStages = useRef(stages);
+  refStages.current = stages;
+  const refOldStage = useRef(oldStage);
+  refOldStage.current = oldStage;
+  const refOldText = useRef(oldText);
+  refOldText.current = oldText;
 
   // ------------------------------------------------------------------------------// ------------------------------------------------------------------------------
   // ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️ 콘바 메소드  콘바 메소드  콘바 메소드  콘바 메소드  콘바 메소드  콘바 메소드  콘바 메소드  콘바 메소드  콘바 메소드  콘바 메소드  콘바 메소드 ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
@@ -163,6 +182,18 @@ function Room(props: any) {
   // 포스트잇 보내기  포스트잇 보내기  포스트잇 보내기  포스트잇 보내기  포스트잇 보내기  포스트잇 보내기  포스트잇 보내기  포스트잇 보내기  포스트잇 보내기  포스트잇 보내기  포스트잇 보내기
   // ----------------------------------------------------------------------------------------------------------------------------------------------
   const sendPostIt = (sendX: any, sendY: any) => {
+    let piColor = 'YELLOW';
+    if (level === 0) {
+      piColor = 'BLUE';
+    } else if (level === 1) {
+      piColor = 'GREEN';
+    } else if (level === 2) {
+      piColor = 'RED';
+    } else if (level === 3) {
+      piColor = 'YELLOW';
+    } else if (level === 4) {
+      piColor = 'BLACK';
+    }
     stompClient.send(
       `/app/move/postit/${roomID}`,
       {},
@@ -174,7 +205,7 @@ function Room(props: any) {
           postitID: -1,
           width: 100,
           height: 100,
-          postitCOLOR: 'YELLOW',
+          postitCOLOR: piColor,
           user: { userNAME: user.name, id: user.id },
         },
       ]),
@@ -357,12 +388,12 @@ function Room(props: any) {
       {
         textEditVisible: false,
         textX: 0,
-        fill: 'black',
+        fill: 'white',
         textY: 0,
         textValue: newPostIt.postitCONTEXT,
         fontSize: 8,
         width: 400,
-        fontStyle: 'normal',
+        fontStyle: 'bold',
         align: 'left',
         id: refPostItID.current,
       },
@@ -403,28 +434,80 @@ function Room(props: any) {
       stompClient.subscribe(`/topic/move/nextstep/${roomID}`, (message) => {
         const newMessage = JSON.parse(message.body);
         const step = newMessage.object.meetStep;
+        setOldStage((prior) => [...prior, refPostIt.current]);
+        setOldText((prior) => [...prior, refText.current]);
+        setPostIts([]);
+        setText([]);
+        setPostItID(0);
         if (step === 'FIRST') {
+          setStages({ scale: 1, x: 0, y: 0 });
           setLevel(0);
           setLatestLevel(0);
         } else if (step === 'SECOND') {
+          setStages({ scale: 1, x: 0, y: 0 });
           setLevel(1);
           setLatestLevel(1);
         } else if (step === 'THIRD') {
+          setStages({ scale: 1, x: 0, y: 0 });
           setLevel(2);
           setLatestLevel(2);
         } else if (step === 'FOURTH') {
+          setStages({ scale: 1, x: 0, y: 0 });
           setLevel(3);
           setLatestLevel(3);
         } else if (step === 'FIFTH') {
+          setStages({ scale: 1, x: 0, y: 0 });
           setLevel(4);
           setLatestLevel(4);
         } else if (step === 'SIXTH') {
+          setStages({ scale: 0.4, x: 0, y: 0 });
+          let count = 0;
+          refOldStage.current.forEach((e, index) => {
+            e.forEach((k, i) => {
+              setPostIts((prior) => [
+                ...prior,
+                {
+                  x: (i % 3) * 150 + 50 + (index - 1) * 640,
+                  y: (i / 3) * 150 + 50,
+                  id: count,
+                  width: k.width,
+                  height: k.height,
+                  fill: k.fill,
+                  shadowBlur: k.shadowBlur,
+                },
+              ]);
+              count += 1;
+            });
+          });
+          count = 0;
+          refOldText.current.forEach((e) => {
+            e.forEach((k) => {
+              setText((prior) => [
+                ...prior,
+                {
+                  textEditVisible: false,
+                  textX: 0,
+                  fill: 'white',
+                  textY: 0,
+                  textValue: k.textValue,
+                  fontSize: 8,
+                  width: k.width,
+                  fontStyle: 'bold',
+                  align: 'left',
+                  id: count,
+                },
+              ]);
+              count += 1;
+            });
+          });
           setLevel(5);
           setLatestLevel(5);
         } else if (step === 'SEVENTH') {
+          setStages({ scale: 1, x: 0, y: 0 });
           setLevel(6);
           setLatestLevel(6);
         }
+        // setTimeout(() => firstModal(level), 1000);
       });
       //
       //
@@ -489,6 +572,8 @@ function Room(props: any) {
         title={subject}
         start={start}
         sendNextLevel={sendNextLevel}
+        oldStage={oldStage}
+        setOldStage={setOldStage}
       />
       <div className={styles.body}>
         <div className={styles.boxandtool}>
@@ -517,30 +602,57 @@ function Room(props: any) {
                     setY(e.target.y());
                   }}
                 />
-                {postIts.map((e: any, index: number) => (
-                  <PostIt
-                    // eslint-disable-next-line react/no-array-index-key
-                    key={index}
-                    shapeProps={e}
-                    isSelected={e.id === selectedId}
-                    onSelect={() => {
-                      console.log(`postIt clicked! - all postIts${JSON.stringify(postIts)}`);
-                      console.log(`postIt clicked! - selected ${JSON.stringify(postIts[index])}`);
-                      console.log(`postIt clicked! - postItID state value ${postItID}`);
-                      selectShape(e.id);
-                      console.log(`postIt clicked! - all text${JSON.stringify(text)}`);
-                    }}
-                    onChange={(newAttrs: any) => {
-                      stompClient.send(`/app/move/postit/${roomID}`, {}, JSON.stringify([newAttrs]));
-                    }}
-                    takeState={setText}
-                    setPI={setPostIts}
-                    PI={postIts}
-                    text={text}
-                    index={index}
-                    user={user}
-                  />
-                ))}
+                {level === latestLevel
+                  ? postIts?.map((e: any, index: number) => (
+                      <PostIt
+                        // eslint-disable-next-line react/no-array-index-key
+                        key={index}
+                        shapeProps={e}
+                        isSelected={e.id === selectedId}
+                        onSelect={() => {
+                          // console.log(`postIt clicked! - all postIts${JSON.stringify(postIts)}`);
+                          // console.log(`postIt clicked! - selected ${JSON.stringify(postIts[index])}`);
+                          // console.log(`postIt clicked! - postItID state value ${postItID}`);
+                          selectShape(e.id);
+                          // console.log(`postIt clicked! - all text${JSON.stringify(text)}`);
+                        }}
+                        onChange={(newAttrs: any) => {
+                          stompClient.send(`/app/move/postit/${roomID}`, {}, JSON.stringify([newAttrs]));
+                        }}
+                        takeState={setText}
+                        setPI={setPostIts}
+                        PI={level === latestLevel ? postIts : oldStage[level ?? 0 + 1]}
+                        text={level === latestLevel ? text : oldText[level ?? 0 + 1]}
+                        index={index}
+                        user={user}
+                        level={level}
+                      />
+                    ))
+                  : oldStage[(level ?? 0) + 1]?.map((e: any, index: number) => (
+                      <PostIt
+                        // eslint-disable-next-line react/no-array-index-key
+                        key={index}
+                        shapeProps={e}
+                        isSelected={e.id === selectedId}
+                        onSelect={() => {
+                          // console.log(`postIt clicked! - all postIts${JSON.stringify(postIts)}`);
+                          // console.log(`postIt clicked! - selected ${JSON.stringify(postIts[index])}`);
+                          // console.log(`postIt clicked! - postItID state value ${postItID}`);
+                          selectShape(e.id);
+                          // console.log(`postIt clicked! - all text${JSON.stringify(text)}`);
+                        }}
+                        onChange={(newAttrs: any) => {
+                          stompClient.send(`/app/move/postit/${roomID}`, {}, JSON.stringify([newAttrs]));
+                        }}
+                        takeState={setText}
+                        setPI={setPostIts}
+                        PI={level === latestLevel ? postIts : oldStage[(level ?? 0) + 1]}
+                        text={level === latestLevel ? text : oldText[(level ?? 0) + 1]}
+                        index={index}
+                        user={user}
+                        level={level}
+                      />
+                    ))}
               </Layer>
             </Stage>
             {selectedId ? (
@@ -600,6 +712,7 @@ function Room(props: any) {
               <Invite />
               <PartExit />
             </div>
+            <div>{`scale: ${stages.scale} x: ${stages.x} y: ${stages.y}`}</div>
           </div>
         </div>
         <div className={styles.personList}>

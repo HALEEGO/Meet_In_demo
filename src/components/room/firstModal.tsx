@@ -2,7 +2,7 @@ import React, { ReactNode, useState, useEffect } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import styles from './navbar.module.css';
-import more from '../../assets/icon/more.png';
+// import more from '../../assets/icon/more.png';
 
 import greenHat from '../../assets/icon/greenHat.png';
 import redHat from '../../assets/icon/redHat.png';
@@ -11,42 +11,40 @@ import blackHat from '../../assets/icon/blackHat.png';
 import blueHat from '../../assets/icon/blueHat.png';
 import whiteHat from '../../assets/icon/whiteHat.png';
 
-function getModalStyle() {
-  const top = 50;
-  const left = 50;
+function SimpleModal2(level: any) {
+  function getModalStyle() {
+    const top = 50;
+    const left = 50;
 
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    paper: {
-      position: 'absolute',
-      width: 1000,
-      height: 500,
-      backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
-      borderRadius: '20px',
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-    },
-  }),
-);
-
-export default function SimpleModal({ level }: any) {
+    return {
+      top: `${top}%`,
+      left: `${left}%`,
+      transform: `translate(-${top}%, -${left}%)`,
+    };
+  }
+  const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+      paper: {
+        position: 'absolute',
+        width: 1000,
+        height: 500,
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #000',
+        borderRadius: '20px',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+      },
+    }),
+  );
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const [detail, setDetail] = useState<ReactNode>();
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  // const handleOpen = () => {
+  //   setOpen(true);
+  // };
 
   const handleClose = () => {
     setOpen(false);
@@ -231,7 +229,7 @@ export default function SimpleModal({ level }: any) {
         </div>,
       );
     }
-  }, []);
+  });
   const body = (
     <div style={modalStyle} className={classes.paper}>
       {detail}
@@ -240,9 +238,6 @@ export default function SimpleModal({ level }: any) {
 
   return (
     <div>
-      <button type="button" className={styles.modal} onClick={handleOpen}>
-        <img src={more} className={styles.modalIcon} alt="d" />
-      </button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -254,3 +249,5 @@ export default function SimpleModal({ level }: any) {
     </div>
   );
 }
+
+export default SimpleModal2;

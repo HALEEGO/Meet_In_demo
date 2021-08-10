@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './navbar.module.css';
 import meetinlogo from '../../assets/image/logobyungchan.png';
+import { AuthContext } from '../../context/loginContext';
 
 function Navbar() {
+  const { user }: any = useContext(AuthContext);
   return (
     <div className={styles.navbar}>
       <Link to="/" className={styles.a}>
@@ -12,27 +14,26 @@ function Navbar() {
       <ul>
         <li>
           <Link to="/home" className={styles.a}>
-            home
+            홈
           </Link>
         </li>
-        <li>
-          <Link to="/history" className={styles.a}>
-            history
-          </Link>
-        </li>
+        {user.id ? (
+          <li>
+            <Link to="/history" className={styles.a}>
+              회의 기록
+            </Link>
+          </li>
+        ) : (
+          <></>
+        )}
         <li>
           <Link to="/makeRoom" className={styles.a}>
-            makeRoom
-          </Link>
-        </li>
-        <li>
-          <Link to="/signup" className={styles.a}>
-            signup
+            {user.id ? '방만들기' : '참여하기'}
           </Link>
         </li>
         <li>
           <Link to="/login" className={styles.a}>
-            login
+            로그인
           </Link>
         </li>
       </ul>
