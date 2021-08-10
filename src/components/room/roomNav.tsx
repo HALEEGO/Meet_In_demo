@@ -13,9 +13,10 @@ import blueHat from '../../assets/icon/blueHat.png';
 import whiteHat from '../../assets/icon/whiteHat.png';
 import yellowHat from '../../assets/icon/yellowHat.png';
 import blackHat from '../../assets/icon/blackHat.png';
-import start from '../../assets/icon/start.png';
+import startImage from '../../assets/icon/start.png';
 
-function Navbar({ level, setLevel }: any) {
+// eslint-disable-next-line no-unused-vars
+function Navbar({ level, setLevel, latestLevel, setLatestLevel, title, start, sendNextLevel }: any) {
   const [viewer, setViewer] = useState(false);
   // const [level, setLevel] = useState(0);
   const DisableElevation = () => (
@@ -28,10 +29,10 @@ function Navbar({ level, setLevel }: any) {
       ) : (
         <>
           <Button style={{ backgroundColor: '#f25c84' }} className={styles.elevator} onClick={() => setViewer(true)}>
-            Level
+            단계
           </Button>
           <Button style={{ backgroundColor: '#59d9d9' }} className={styles.elevator} onClick={() => setViewer(false)}>
-            Explain
+            설명
           </Button>
         </>
       )}
@@ -39,7 +40,7 @@ function Navbar({ level, setLevel }: any) {
   );
   const startRoom = () => {
     if (level === undefined) {
-      setLevel(0);
+      start();
     }
   };
 
@@ -54,11 +55,19 @@ function Navbar({ level, setLevel }: any) {
   // }
   // 모자 색깔을 dot.steps에 따라서 {exDiv}로 리턴하는 if문이 필요
 
-  let view = <div> make에서 넘어온 제목을 표시할 공간 </div>;
-  let capImage = start;
+  let view = <div> 회의 주제 : {title} </div>;
+  let capImage = startImage;
 
   if (viewer) {
-    view = <DotsMobileStepper level={level} setLevel={setLevel} />;
+    view = (
+      <DotsMobileStepper
+        level={level}
+        setLevel={setLevel}
+        latestLevel={latestLevel}
+        setLatestLevel={setLatestLevel}
+        sendNextLevel={sendNextLevel}
+      />
+    );
     if (level === 0) {
       capImage = blueHat;
     } else if (level === 1) {

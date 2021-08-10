@@ -21,16 +21,16 @@ const useStyles = makeStyles({
   },
 });
 
-export default function DotsMobileStepper({ level, setLevel }: any) {
+export default function DotsMobileStepper({ level, setLevel, latestLevel, setLatestLevel, sendNextLevel }: any) {
   const classes = useStyles();
   const theme = useTheme();
 
   const handleNext = () => {
-    setLevel(level + 1);
+    setLevel((prior) => prior + 1);
   };
 
   const handleBack = () => {
-    setLevel(level - 1);
+    setLevel((prior) => prior - 1);
   };
 
   return (
@@ -41,15 +41,20 @@ export default function DotsMobileStepper({ level, setLevel }: any) {
       activeStep={level}
       className={classes.root}
       nextButton={
-        <Button size="small" className={classes.rBtn} onClick={handleNext} disabled={level === 8}>
-          Next
+        <Button
+          size="small"
+          className={classes.rBtn}
+          onClick={() => (level >= latestLevel ? sendNextLevel(level) : handleNext())}
+          disabled={level === 8}
+        >
+          다음 모자
           {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
         </Button>
       }
       backButton={
-        <Button size="small" className={classes.lBtn} onClick={handleBack} disabled={level === 0}>
+        <Button size="small" className={classes.lBtn} onClick={() => handleBack()} disabled={level === 0}>
           {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-          Back
+          이전 모자
         </Button>
       }
     />

@@ -52,7 +52,7 @@ export default function SimpleModal({ level }: any) {
     setOpen(false);
   };
   useEffect(() => {
-    if (level === 1) {
+    if (level === 0) {
       setDetail(
         <div className={styles.rowModal}>
           <div className={styles.modalLeft}>
@@ -75,7 +75,7 @@ export default function SimpleModal({ level }: any) {
           </div>
         </div>,
       );
-    } else if (level === 2) {
+    } else if (level === 1) {
       setDetail(
         <div className={styles.rowModal}>
           <div className={styles.modalLeft}>
@@ -103,7 +103,7 @@ export default function SimpleModal({ level }: any) {
           </div>
         </div>,
       );
-    } else if (level === 3) {
+    } else if (level === 2) {
       setDetail(
         <div className={styles.rowModal}>
           <div className={styles.modalLeft}>
@@ -131,7 +131,7 @@ export default function SimpleModal({ level }: any) {
           </div>
         </div>,
       );
-    } else if (level === 4) {
+    } else if (level === 3) {
       setDetail(
         <div className={styles.rowModal}>
           <div className={styles.modalLeft}>
@@ -155,7 +155,7 @@ export default function SimpleModal({ level }: any) {
           </div>
         </div>,
       );
-    } else if (level === 5) {
+    } else if (level === 4) {
       setDetail(
         <div className={styles.rowModal}>
           <div className={styles.modalLeft}>
@@ -183,7 +183,7 @@ export default function SimpleModal({ level }: any) {
           </div>
         </div>,
       );
-    } else if (level === 6) {
+    } else if (level === 5) {
       setDetail(
         <div className={styles.rowModal}>
           <div className={styles.modalLeft}>
@@ -208,7 +208,7 @@ export default function SimpleModal({ level }: any) {
           </div>
         </div>,
       );
-    } else if (level === 7) {
+    } else if (level === 6) {
       setDetail(
         <div className={styles.rowModal}>
           <div className={styles.modalLeft}>

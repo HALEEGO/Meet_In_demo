@@ -57,6 +57,7 @@ export default function MakeRoom() {
         setUserList(response.data.object.userPARTICIPANT);
         setHost(response.data.object.hostUSER.userNAME);
         setRoomID(response.data.object.roomID);
+        setSubject(response.data.object.title);
         console.log(userList);
         setIsEnter(true);
       })
@@ -84,7 +85,7 @@ export default function MakeRoom() {
         <Redirect
           to={{
             pathname: '/room',
-            state: { roomID, isHost: 'NO', userList, host },
+            state: { roomID, isHost: 'NO', subject, userList, host },
           }}
         />
       </Route>
@@ -94,23 +95,23 @@ export default function MakeRoom() {
     <MrFrame>
       <div className={styles.container}>
         <div className={styles.makeDiv}>
-          Meeting method
+          회의 기법
           <CustomizedSelects type={meetType} setType={setMeetType} />
           <input
             type="text"
-            placeholder="방제"
+            placeholder="회의 주제를 입력해 주세요."
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
             className={styles.inputtext}
           />
           <button type="submit" onClick={createRoom} className={styles.enterButton}>
-            Make
+            방 만들기
           </button>
         </div>
       </div>
       <div className={styles.EnterContainer}>
         <div className={styles.makeDiv}>
-          Room Number
+          방 번호
           <input
             type="text"
             placeholder="방번호"
@@ -119,7 +120,7 @@ export default function MakeRoom() {
             className={styles.inputtext}
           />
           <button type="submit" onClick={enterRoomLogin} className={styles.enterButton}>
-            Enter
+            방 참여하기
           </button>
         </div>
       </div>
