@@ -82,9 +82,10 @@ function Navbar({ level, setLevel, latestLevel, setLatestLevel, title, start, se
       capImage = whiteHat;
     } else if (level === 6) {
       capImage = blueHat;
-    } else if (level === 7) {
-      capImage = blueHat;
     }
+    // } else if (level === 7) {
+    //   capImage = blueHat;
+    // }
   } else if (level === 0) {
     capImage = blueHat;
     view = (
@@ -148,16 +149,17 @@ function Navbar({ level, setLevel, latestLevel, setLatestLevel, title, start, se
         <SimpleModal level={level} />
       </div>
     );
-  } else if (level === 7) {
-    capImage = blueHat;
-    view = (
-      <div className={styles.levelExplain}>
-        <span className={styles.role}>끝</span>
-        <span className={styles.work}>히스토리에 기록합시다.</span>
-        <SimpleModal level={level} />
-      </div>
-    );
   }
+  //  else if (level === 7) {
+  //   capImage = blueHat;
+  //   view = (
+  //     <div className={styles.levelExplain}>
+  //       <span className={styles.role}>끝</span>
+  //       <span className={styles.work}>히스토리에 기록합시다.</span>
+  //       <SimpleModal level={level} />
+  //     </div>
+  //   );
+  // }
   // level 0, 7은 시작과 끝의 기능을 맡게 함
   return (
     <div className={styles.navbar}>

@@ -36,7 +36,7 @@ export default function DotsMobileStepper({ level, setLevel, latestLevel, setLat
   return (
     <MobileStepper
       variant="dots"
-      steps={8}
+      steps={7}
       position="static"
       activeStep={level}
       className={classes.root}
@@ -45,7 +45,7 @@ export default function DotsMobileStepper({ level, setLevel, latestLevel, setLat
           size="small"
           className={classes.rBtn}
           onClick={() => (level >= latestLevel ? sendNextLevel(level) : handleNext())}
-          disabled={level === 8}
+          disabled={level === 6}
         >
           다음 모자
           {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
