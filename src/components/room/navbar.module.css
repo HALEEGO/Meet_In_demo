@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'esamanru Bold';     
+    src: url("../../assets/font/esamanruBold.ttf")
+  }
+  @font-face {
+    font-family: 'esamanru Medium';     
+    src: url("../../assets/font/esamanruMedium.ttf")
+  }
 .navbar {
     display: flex;
     /* flex : 1; */
@@ -35,25 +43,37 @@
     cursor: pointer; */
 }
 
+.explainContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .levelExplain {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-right: 30px;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 .role {
     color: #000;
-    font-weight: bold;
+    font-family: 'esamanru Bold';
+    font-size: 14px;
 }
 
 .work {
     color: #000;
-    font-weight: bold;
-    margin-right: 30px
+    font-family: 'esamanru Medium';
+    margin-right: 30px;
+    font-size: 14px;
 }
 
 .elevator {
+    font-family: 'esamanru Medium';
     height: 40%;
     background-color: #f25c84;
 }
@@ -64,6 +84,14 @@
     border-radius: 50px;
     border-color: white;
     align-items: center;
+    margin: 0;
+}
+
+.inviteModal {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 .modalIcon {
@@ -94,4 +122,16 @@
 
 .hatExplain {
 
+}
+
+
+
+.title {
+    font-family: 'esamanru Bold';
+    font-size: 20px;
+}
+
+.capTitle {
+    font-family: 'esamanru Bold';
+    font-size: 18px;
 }

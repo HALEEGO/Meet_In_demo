@@ -1,5 +1,6 @@
 import React, { useState, useContext, useRef } from 'react';
-import { Stage, Layer, Text } from 'react-konva';
+// eslint-disable-next-line no-unused-vars
+import { Stage, Layer, Text, Line } from 'react-konva';
 import Stomp from 'stompjs';
 import SockJS from 'sockjs-client';
 import Button from '@material-ui/core/Button';
@@ -19,6 +20,7 @@ import toolTrashCan from '../../assets/icon/delete.png';
 import IP from '../../utils/type/constant/network';
 import { AuthContext } from '../../context/loginContext';
 import FirstModal from './firstModal';
+import InviteModal from './inviteModal';
 
 // type textType = {
 //   textEditVisible: boolean;
@@ -69,6 +71,7 @@ function Room(props: any) {
   const [ptList, setPtList] = useState(userList); // 참가자 리스트
 
   const [open, setOpen] = React.useState(false);
+  const [inviteOpen, setInviteOpen] = useState(false);
 
   const changeOpen = () => {
     setOpen((prior) => !prior);
@@ -241,7 +244,13 @@ function Room(props: any) {
   //
   // 입퇴장 관련 버튼
   const Invite = () => (
-    <Button style={{ backgroundColor: '#59d9d9' }} variant="contained" color="inherit" disableElevation>
+    <Button
+      onClick={() => setInviteOpen(true)}
+      style={{ backgroundColor: '#59d9d9' }}
+      variant="contained"
+      color="inherit"
+      disableElevation
+    >
       초대하기
     </Button>
   );
@@ -573,6 +582,7 @@ function Room(props: any) {
   // ----------------------------------------------------------------------------------------------------------------------------------------------
   return (
     <div className={styles.root}>
+      <InviteModal inviteOpen={inviteOpen} setInviteOpen={setInviteOpen} roomID={roomID} />
       <RoomNav
         level={level}
         setLevel={setLevel}
@@ -604,7 +614,7 @@ function Room(props: any) {
             >
               <Layer>
                 <Text
-                  text="position checker"
+                  text=""
                   x={x}
                   y={y}
                   draggable
@@ -613,6 +623,18 @@ function Room(props: any) {
                     setY(e.target.y());
                   }}
                 />
+                {level === 5 ? (
+                  <>
+                    <Line points={[0, 0, 3200, 0, 3200, 1500, 0, 1500, 0, 0]} stroke="#a8a2a2" strokeWidth={1} />
+                    <Line points={[640, 0, 640, 1500]} stroke="#a8a2a2" strokeWidth={1} />
+                    <Line points={[1280, 0, 1280, 1500]} stroke="#a8a2a2" strokeWidth={1} />
+                    <Line points={[1920, 0, 1920, 1500]} stroke="#a8a2a2" strokeWidth={1} />
+                    <Line points={[2560, 0, 2560, 1500]} stroke="#a8a2a2" strokeWidth={1} />
+                    <Line points={[3200, 0, 3200, 1500]} stroke="#a8a2a2" strokeWidth={1} />
+                  </>
+                ) : (
+                  <Line />
+                )}
                 {level === latestLevel
                   ? postIts?.map((e: any, index: number) => (
                       <PostIt
@@ -672,8 +694,15 @@ function Room(props: any) {
                 style={{
                   display: text[selectedId ?? 0].textEditVisible ? 'inline' : 'none',
                   position: 'absolute',
-                  top: `${text[selectedId ?? 0].textY}px`,
+                  top: `${text[selectedId ?? 0].textY + 122}px`,
                   left: `${text[selectedId ?? 0].textX}px`,
+                  width: `${postIts[selectedId ?? 0].width}px`,
+                  height: `${postIts[selectedId ?? 0].height}px`,
+                  backgroundColor: `${postIts[selectedId ?? 0].fill}`,
+                  color: 'white',
+                  fontSize: '14.5px',
+                  fontWeight: 'bold',
+                  wordWrap: 'break-word',
                 }}
                 onChange={(e) => handleTextEdit(e)}
                 onKeyDown={(e) => handleTextareaKeyDown(e)}
@@ -720,15 +749,38 @@ function Room(props: any) {
               </div>
             </div>
             <div className={styles.functionBox}>
+              <div style={{ height: 50 }} />
+              {user.isHost === 'HOST' ? (
+                <Button
+                  onClick={() => setInviteOpen(true)}
+                  style={{ backgroundColor: '#59d9d9' }}
+                  variant="contained"
+                  color="inherit"
+                  disableElevation
+                >
+                  다음 단계
+                </Button>
+              ) : (
+                <div style={{ height: 50 }} />
+              )}
+              <div style={{ height: 45 }} />
               <Invite />
               <PartExit />
             </div>
-            <div>{`scale: ${stages.scale} x: ${stages.x} y: ${stages.y}`}</div>
           </div>
         </div>
         <div className={styles.personList}>
-          <div>{host}</div>
-          {ptList.map((ptUser: any) => (ptUser.userNAME === host ? <span /> : <div>{ptUser.userNAME}</div>))}
+          <div>{host} (호스트)</div>
+          {ptList.map((ptUser: any) =>
+            // eslint-disable-next-line no-nested-ternary
+            ptUser.userNAME === host ? (
+              <span />
+            ) : ptUser.userNAME === user.name ? (
+              <div>{ptUser.userNAME} (나)</div>
+            ) : (
+              <div>{ptUser.userNAME}</div>
+            ),
+          )}
         </div>
       </div>
     </div>

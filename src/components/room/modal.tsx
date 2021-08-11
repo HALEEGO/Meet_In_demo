@@ -107,7 +107,7 @@ export default function SimpleModal({ level }: any) {
       setDetail(
         <div className={styles.rowModal}>
           <div className={styles.modalLeft}>
-            <img src={redHat} className={styles.hatImg} alt="ddd" />
+            <img src={redHat} className={styles.hatImg} alt="빨간모자" />
             <br />
             <h2>직관주의자</h2>
             <br />
@@ -135,7 +135,7 @@ export default function SimpleModal({ level }: any) {
       setDetail(
         <div className={styles.rowModal}>
           <div className={styles.modalLeft}>
-            <img src={yellowHat} className={styles.hatImg} alt="ddd" />
+            <img src={yellowHat} className={styles.hatImg} alt="노란모자" />
             <br />
             <h2>낙관주의자</h2>
             <br />
