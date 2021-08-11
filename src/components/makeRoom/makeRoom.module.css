@@ -1,0 +1,72 @@
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding-top: 0px; */
+    /* background-color: #fff; */
+}
+
+.EnterContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+}
+
+.makeDiv {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 30%;
+    border-radius: 20px;
+    background-color: rgba(210, 210, 210, 0.4);
+    align-items: center;
+}
+
+.enterButton {
+    width: 250px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 10px 10px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 0;
+    background: #57bfc9;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.enterButton:hover {
+    /* border: none; */
+    background-color: rgba(87, 191, 201, 0.8);
+}
+.inputtext {
+    width: 250px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 10px 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2.5px solid #57bfc9;
+    background: transparent;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.a{
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.title {
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 20px;
+}

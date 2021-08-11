@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.wrap {
+    width: 100%;
+    height: 100vh;
+    flex-direction: column;
+    background-image:  linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url(../../assets/cell/sgg.JPG);
+    /* background-size: 100rem; */
+    background-repeat: no-repeat;
+    background-position: center;
+    justify-content: center;
+}
+
+.childBody {
+    display: flex;
+    justify-content: center;
+}
+
+ /* 
+.wrap:hover {
+    background-color: white;
+    transition: background-color 5s;
+} */
+
