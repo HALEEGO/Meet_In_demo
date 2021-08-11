@@ -11,44 +11,44 @@ import blackHat from '../../assets/icon/blackHat.png';
 import blueHat from '../../assets/icon/blueHat.png';
 import whiteHat from '../../assets/icon/whiteHat.png';
 
-function SimpleModal2(level: any) {
-  function getModalStyle() {
-    const top = 50;
-    const left = 50;
+function getModalStyle() {
+  const top = 50;
+  const left = 50;
 
-    return {
-      top: `${top}%`,
-      left: `${left}%`,
-      transform: `translate(-${top}%, -${left}%)`,
-    };
-  }
-  const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-      paper: {
-        position: 'absolute',
-        width: 1000,
-        height: 500,
-        backgroundColor: theme.palette.background.paper,
-        border: '2px solid #000',
-        borderRadius: '20px',
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
-      },
-    }),
-  );
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    paper: {
+      position: 'absolute',
+      width: 1000,
+      height: 500,
+      backgroundColor: theme.palette.background.paper,
+      border: '2px solid #000',
+      borderRadius: '20px',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+    },
+  }),
+);
+
+// eslint-disable-next-line no-unused-vars
+function FirstModal({ level, open, setOpen, changeOpen }: any) {
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(true);
   const [detail, setDetail] = useState<ReactNode>();
+  // const [a, setA] = useState(false);
+  // setA(open);
 
   // const handleOpen = () => {
   //   setOpen(true);
   // };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
   useEffect(() => {
     if (level === 0) {
       setDetail(
@@ -229,7 +229,7 @@ function SimpleModal2(level: any) {
         </div>,
       );
     }
-  });
+  }, [level]);
   const body = (
     <div style={modalStyle} className={classes.paper}>
       {detail}
@@ -240,7 +240,7 @@ function SimpleModal2(level: any) {
     <div>
       <Modal
         open={open}
-        onClose={handleClose}
+        onClose={() => setOpen(false)}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
@@ -250,4 +250,4 @@ function SimpleModal2(level: any) {
   );
 }
 
-export default SimpleModal2;
+export default FirstModal;

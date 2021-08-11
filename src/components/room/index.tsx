@@ -18,7 +18,7 @@ import toolImage from '../../assets/icon/picture.png';
 import toolTrashCan from '../../assets/icon/delete.png';
 import IP from '../../utils/type/constant/network';
 import { AuthContext } from '../../context/loginContext';
-// import firstModal from './firstModal';
+import FirstModal from './firstModal';
 
 // type textType = {
 //   textEditVisible: boolean;
@@ -67,6 +67,12 @@ function Room(props: any) {
   const [latestLevel, setLatestLevel] = useState<number>();
   // eslint-disable-next-line no-unused-vars
   const [ptList, setPtList] = useState(userList); // 참가자 리스트
+
+  const [open, setOpen] = React.useState(false);
+
+  const changeOpen = () => {
+    setOpen((prior) => !prior);
+  };
   // const refPostItID = useRef()
   // --------------------------------------------------------------------
   //
@@ -434,6 +440,9 @@ function Room(props: any) {
       stompClient.subscribe(`/topic/move/nextstep/${roomID}`, (message) => {
         const newMessage = JSON.parse(message.body);
         const step = newMessage.object.meetStep;
+        if (step === 'FIRST') {
+          setPostIts([]);
+        }
         setOldStage((prior) => [...prior, refPostIt.current]);
         setOldText((prior) => [...prior, refText.current]);
         setPostIts([]);
@@ -507,7 +516,7 @@ function Room(props: any) {
           setLevel(6);
           setLatestLevel(6);
         }
-        // setTimeout(() => firstModal(level), 1000);
+        changeOpen();
       });
       //
       //
@@ -575,7 +584,9 @@ function Room(props: any) {
         oldStage={oldStage}
         setOldStage={setOldStage}
       />
+
       <div className={styles.body}>
+        {level !== undefined && <FirstModal level={level} open={open} setOpen={setOpen} changeOpen={changeOpen} />}
         <div className={styles.boxandtool}>
           <div className={styles.sandbox}>
             <Stage
