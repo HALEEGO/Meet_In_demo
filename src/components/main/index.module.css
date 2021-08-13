@@ -1,0 +1,12 @@
+.wrap {
+    display: flex;
+    flex: 10;
+    flex-direction: column;
+    height: 100vh;
+    /* background-image: url(../../assets/image/mainback.png);
+    background-blend-mode: luminosity;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1; */
+}

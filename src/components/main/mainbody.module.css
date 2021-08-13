@@ -1,0 +1,58 @@
+.explaining {
+    width: 100%;
+    position: absolute;
+    top: 60%;
+    transform: translateY(-90%);
+    text-align: center;
+    color: #fff;
+}
+
+.explaining h1 {
+    font-size: 45px;
+    margin-top: 80px;
+}
+
+.explaining p {
+    margin: 20px auto;
+    font-weight: 400;
+    line-height: 25px;
+}
+
+.button {
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 20px 10px;
+    border-radius: 25px;
+    font-size: 20px;
+    font-weight: bold;
+    border: 0;
+    background: #57bfc9;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.span {
+    /* background: rgba(255, 255, 255, 0.2); */
+    height: 100%;
+    width: 0;
+    border-radius: 25px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: 0.5s;
+}
+
+.button:hover span {
+    width: 100%;
+    
+}
+
+.button:hover {
+    background-color: rgba(87, 191, 201, 0.8);
+    /* border: rgba(255, 255, 255, 0.2); */
+    width: 100%,
+}

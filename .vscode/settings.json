@@ -6,7 +6,11 @@
     "extensions": [".ts", ".js", ".tsx"]
   },
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "teypscriptreact"],
-  "cSpell.words": ["Hanwoollim", "kakao"],
+  "cSpell.words": [
+    "Hanwoollim",
+    "kakao",
+    "mainbody"
+  ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   }
