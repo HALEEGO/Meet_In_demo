@@ -114,53 +114,68 @@ function Navbar({
   } else if (level === 1) {
     capImage = greenHat;
     view = (
-      <div className={styles.levelExplain}>
-        <span className={styles.role}>아이디어 제안자 &nbsp;&nbsp;&nbsp;</span>
-        <span className={styles.work}>새로운 아이디어를 계속해서 제안해봅시다.</span>
-        <SimpleModal level={level} />
+      <div className={styles.explainContainer}>
+        <div className={styles.title}> 주제 : {title}</div>
+        <div className={styles.levelExplain}>
+          <span className={styles.role}>아이디어 제안자 &nbsp;&nbsp;&nbsp;</span>
+          <span className={styles.work}>새로운 아이디어를 계속해서 제안해봅시다.</span>
+          <SimpleModal level={level} />
+        </div>
       </div>
     );
   } else if (level === 2) {
     capImage = redHat;
     view = (
-      <div className={styles.levelExplain}>
-        <span className={styles.role}>직관주의자 &nbsp;&nbsp;&nbsp;</span>
-        <span className={styles.work}>아이디어를 듣는 순간의 느낌을 이야기해봅시다.</span>
-        <SimpleModal level={level} />
+      <div className={styles.explainContainer}>
+        <div className={styles.title}> 주제 : {title}</div>
+        <div className={styles.levelExplain}>
+          <span className={styles.role}>직관주의자 &nbsp;&nbsp;&nbsp;</span>
+          <span className={styles.work}>아이디어를 듣는 순간의 느낌을 이야기해봅시다.</span>
+          <SimpleModal level={level} />
+        </div>
       </div>
     );
   } else if (level === 3) {
     capImage = yellowHat;
     view = (
-      <div className={styles.levelExplain}>
-        <span className={styles.role}>낙관주의자 &nbsp;&nbsp;&nbsp;</span>
-        <span className={styles.work}>아이디어의 좋은 점을 부각시켜봅시다.</span>
-        <SimpleModal level={level} />
+      <div className={styles.explainContainer}>
+        <div className={styles.title}> 주제 : {title}</div>
+        <div className={styles.levelExplain}>
+          <span className={styles.role}>낙관주의자 &nbsp;&nbsp;&nbsp;</span>
+          <span className={styles.work}>아이디어의 좋은 점을 부각시켜봅시다.</span>
+          <SimpleModal level={level} />
+        </div>
       </div>
     );
   } else if (level === 4) {
     capImage = blackHat;
     view = (
-      <div className={styles.levelExplain}>
-        <span className={styles.role}>비관주의자 &nbsp;&nbsp;&nbsp;</span>
-        <span className={styles.work}>아이디어의 문제점을 도출해봅시다.</span>
-        <SimpleModal level={level} />
+      <div className={styles.explainContainer}>
+        <div className={styles.title}> 주제 : {title}</div>
+        <div className={styles.levelExplain}>
+          <span className={styles.role}>비관주의자 &nbsp;&nbsp;&nbsp;</span>
+          <span className={styles.work}>아이디어의 문제점을 도출해봅시다.</span>
+          <SimpleModal level={level} />
+        </div>
       </div>
     );
   } else if (level === 5) {
     capImage = whiteHat;
     view = (
-      <div className={styles.levelExplain}>
-        <span className={styles.role}>객관주의자 &nbsp;&nbsp;&nbsp;</span>
-        <span className={styles.work}>모든 차원의 정보를 정리헤봅시다.</span>
-        <SimpleModal level={level} />
+      <div className={styles.explainContainer}>
+        <div className={styles.title}> 주제 : {title}</div>
+        <div className={styles.levelExplain}>
+          <span className={styles.role}>객관주의자 &nbsp;&nbsp;&nbsp;</span>
+          <span className={styles.work}>모든 차원의 정보를 정리헤봅시다.</span>
+          <SimpleModal level={level} />
+        </div>
       </div>
     );
   } else if (level === 6) {
     capImage = blueHat;
     view = (
       <div className={styles.explainContainer}>
-        <div className={styles.title}> 주제 : </div>
+        <div className={styles.title}> 주제 : {title}</div>
         <div className={styles.levelExplain}>
           <span className={styles.role}>회의주제자 &nbsp;&nbsp;&nbsp;</span>
           <span className={styles.work}>논리적으로 그 문제를 분석해봅시다.</span>

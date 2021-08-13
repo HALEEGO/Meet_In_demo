@@ -49,6 +49,7 @@ const PostIt = ({
         y={0}
         width={0}
         height={0}
+        onDblTap={(e) => handleTextDblClick(e)}
         // width={shapeProps.width}
         // height={shapeProps.height}
         onDragEnd={(e) => {
@@ -109,6 +110,7 @@ const PostIt = ({
           id={shapeProps.id}
           x={shapeProps.x}
           y={shapeProps.y}
+          onDblTap={(e) => handleTextDblClick(e)}
           shadowBlur={shapeProps.shadowBlur}
           ref={shapeRef}
           // eslint-disable-next-line no-unused-vars
@@ -159,7 +161,10 @@ const PostIt = ({
           y={shapeProps.y + 3}
           wrap="word"
           onClick={onSelect}
+          onTap={isSelected ? (e) => handleTextDblClick(e) : onSelect}
           onDblClick={(e) => handleTextDblClick(e)}
+          onDblTap={(e) => handleTextDblClick(e)}
+
           // eslint-disable-next-line no-unused-vars
 
           // eslint-disable-next-line no-unused-vars

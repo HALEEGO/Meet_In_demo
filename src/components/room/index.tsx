@@ -605,6 +605,7 @@ function Room(props: any) {
               draggable
               onWheel={handleWheel}
               onClick={attachPostIt}
+              onTouchEnd={attachPostIt}
               scaleX={stages.scale}
               scaleY={stages.scale}
               x={stages.x}
