@@ -61,7 +61,10 @@ function FirstModal({ level, open, setOpen, changeOpen }: any) {
             <p>파란모자는 의장의 역할로써 회의의 시작과 끝을 담당합니다.</p>
           </div>
           <div className={styles.hatExplain}>
-            <h1>파란모자는 문제를 정의하고, 사고를 조직화합니다.</h1>
+            <h1>
+              파란모자는 문제를 정의하고,
+              <br /> 사고를 조직화합니다.
+            </h1>
             <br />
             <h2>회의 시작 전에 다음과 같은 사항을 점검합니다.</h2>
             <br />
