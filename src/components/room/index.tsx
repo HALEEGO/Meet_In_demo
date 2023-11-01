@@ -55,7 +55,7 @@ function Room(props: any) {
 
   // eslint-disable-next-line no-unused-vars
   const { roomID, userList, host, isHost, subject } = location.state;
-  console.log(subject);
+  // console.log(postIts);
 
   const windowX = window.innerWidth; // 화면 전체 가로 받기
   const windowY = window.innerHeight; // 화면 전체 세로 받기
@@ -101,7 +101,7 @@ function Room(props: any) {
   //
   //
   const [postIts, setPostIts] = useState<Array<any>>([]); // 포스트잇 스타일 리스트
-
+  console.log(`post it im : ${postIts}`);
   const [oldStage, setOldStage] = useState<Array<any>>([]);
 
   const [oldText, setOldText] = useState<Array<any>>([]);
@@ -109,15 +109,13 @@ function Room(props: any) {
   console.log(` new Stage : ${JSON.stringify(postIts, null, ' ')}`);
   console.log(` oldText : ${JSON.stringify(oldText, null, ' ')}`);
 
-  const [isPostIt, setIsPostIt] = useState(false); // 포스트잇 버튼 클릭 했는가
+  const [isPostIt, setIsPostIt] = useState(true); // 포스트잇 버튼 클릭 했는가
 
   const [text, setText] = useState<Array<any>>([]); // 포스트잇 글씨 -> postIts랑 index 번호 같음
   console.log(` current Text : ${JSON.stringify(text, null, ' ')}`);
 
   const [postItID, setPostItID] = useState<number>(0); // 포스트잇 아이디
-
   const [selectedId, selectShape] = React.useState(null); // 클릭시 선택된 포스트잇 아이디
-
   //
   //
   //
@@ -143,7 +141,10 @@ function Room(props: any) {
   //
   // 포스트잇버튼  포스트잇버튼  포스트잇버튼  포스트잇버튼  포스트잇버튼  포스트잇버튼  포스트잇버튼  포스트잇버튼  포스트잇버튼  포스트잇버튼  포스트잇버튼  포스트잇버튼
   const changeIsPostIt = () => {
+    console.log('분명히 포스트잇 클릭했음!!!!!!!!!!!!!!!!!!!');
+    console.log(isPostIt);
     setIsPostIt(!isPostIt);
+    console.log(isPostIt);
   };
   //
   //
@@ -203,8 +204,28 @@ function Room(props: any) {
     } else if (level === 4) {
       piColor = 'BLACK';
     }
+    console.log(sendX);
+    console.log(sendY);
+
+    // const headers = {
+    //   'content-type': 'application/json',
+    // };
+    // const payload = {
+    //   locationX: sendX,
+    //   locationY: sendY,
+    //   postitCONTEXT: '텍스트를 입력하세요.',
+    //   postitID: -1,
+    //   width: 100,
+    //   height: 100,
+    //   postitCOLOR: piColor,
+    //   user: { userNAME: user.name, id: user.id },
+    //   roomID,
+    // };
+    // stompClient.send(`/app/move/postit`, headers, JSON.stringify(payload));
+
     stompClient.send(
-      `/app/move/postit/${roomID}`,
+      `/app/move/postit/`,
+      // `/app/move/postit/${roomID}`,
       {},
       JSON.stringify([
         {
@@ -216,6 +237,7 @@ function Room(props: any) {
           height: 100,
           postitCOLOR: piColor,
           user: { userNAME: user.name, id: user.id },
+          roomID,
         },
       ]),
     );
@@ -226,11 +248,13 @@ function Room(props: any) {
   const attachPostIt = (e: any) => {
     e.evt.preventDefault();
     const stage = e.target.getStage();
+    console.log(isPostIt);
     if (isPostIt) {
       const sendX = stage.getPointerPosition().x / stages.scale - stage.x() / stages.scale;
       const sendY = stage.getPointerPosition().y / stages.scale - stage.y() / stages.scale;
       sendPostIt(sendX, sendY);
       changeIsPostIt();
+      console.log('attach');
     }
   };
   // 😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃
@@ -291,7 +315,8 @@ function Room(props: any) {
         const enterX = postIts[selectedId ?? 0].x;
         const enterY = postIts[selectedId ?? 0].y;
         stompClient.send(
-          `/app/move/postit/${roomID}`,
+          // `/app/move/postit/${roomID}`,
+          `/app/move/postit/`,
           {},
           JSON.stringify([
             {
@@ -303,6 +328,7 @@ function Room(props: any) {
               height,
               postitCOLOR: fill,
               user: { userNAME: user.name, id: user.id },
+              roomID,
             },
           ]),
         );
@@ -436,9 +462,10 @@ function Room(props: any) {
       // eslint-disable-next-line no-unused-vars
       stompClient.subscribe(`/topic/enterroom/${roomID}`, (ptUser) => {
         const newUser = JSON.parse(ptUser.body);
+        console.log(newUser);
         setPtList((prior: any) =>
           // eslint-disable-next-line no-unused-expressions
-          [...prior, { userNAME: newUser.object.userNAME }],
+          [...prior, { userNAME: newUser.userNAME }],
         );
       });
       //
@@ -447,8 +474,12 @@ function Room(props: any) {
       //
       // 2. 다음단계 알려주는 구독라인 - 호스트만 버튼 볼 수 있어서 호스트만 정보 던질 수 있음
       stompClient.subscribe(`/topic/move/nextstep/${roomID}`, (message) => {
+        console.log(JSON.parse(message.body));
         const newMessage = JSON.parse(message.body);
-        const step = newMessage.object.meetStep;
+        // const step = newMessage.object.meetStep;
+        const step = newMessage.object;
+
+        // const roomID = JSON.parse(newMessage.roomID);
         if (step === 'FIRST') {
           setPostIts([]);
         }
@@ -553,7 +584,15 @@ function Room(props: any) {
   // 단계 연결 서버 통신  단계 연결 서버 통신  단계 연결 서버 통신  단계 연결 서버 통신  단계 연결 서버 통신  단계 연결 서버 통신  단계 연결 서버 통신
   // ----------------------------------------------------------------------------------------------------------------------------------------------
   const start = () => {
-    stompClient.send(`/app/move/nextstep/${roomID}`, {}, JSON.stringify({ meetStep: 'BEFORE_START' }));
+    const headers = {
+      'content-type': 'application/json',
+    };
+    //  stompClient.send(`/app/move/nextstep/${roomID}`, headers, JSON.stringify({ meetStep: 0 }));
+    const payload = {
+      meetStep: 'BEFORE_START',
+      roomID,
+    };
+    stompClient.send(`/app/move/nextstep`, headers, JSON.stringify(payload));
   };
   const sendNextLevel = (levels) => {
     let coLevel;
@@ -572,7 +611,11 @@ function Room(props: any) {
     } else if (levels === 6) {
       coLevel = 'SEVENTH';
     }
-    stompClient.send(`/app/move/nextstep/${roomID}`, {}, JSON.stringify({ meetStep: coLevel }));
+    const payload2 = {
+      meetStep: coLevel,
+      roomID,
+    };
+    stompClient.send(`/app/move/nextstep`, {}, JSON.stringify(payload2));
   };
   // 😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃😃
   //
@@ -638,6 +681,7 @@ function Room(props: any) {
                 )}
                 {level === latestLevel
                   ? postIts?.map((e: any, index: number) => (
+                      // 서버가 postIts를 안보내주고있다. <<<< 이게 핵심
                       <PostIt
                         // eslint-disable-next-line react/no-array-index-key
                         key={index}
@@ -651,7 +695,10 @@ function Room(props: any) {
                           // console.log(`postIt clicked! - all text${JSON.stringify(text)}`);
                         }}
                         onChange={(newAttrs: any) => {
-                          stompClient.send(`/app/move/postit/${roomID}`, {}, JSON.stringify([newAttrs]));
+                          // onChange={(newAttrs: any) => {
+                          console.log(newAttrs);
+                          // stompClient.send(`/app/move/postit/${roomID}`, {}, JSON.stringify([newAttrs]));
+                          stompClient.send(`/app/move/postit/`, {}, JSON.stringify([newAttrs, roomID]));
                         }}
                         takeState={setText}
                         setPI={setPostIts}
@@ -675,8 +722,11 @@ function Room(props: any) {
                           selectShape(e.id);
                           // console.log(`postIt clicked! - all text${JSON.stringify(text)}`);
                         }}
-                        onChange={(newAttrs: any) => {
-                          stompClient.send(`/app/move/postit/${roomID}`, {}, JSON.stringify([newAttrs]));
+                        onClick={(newAttrs: any) => {
+                          // onChange={(newAttrs: any) => {
+                          console.log(newAttrs);
+                          // stompClient.send(`/app/move/postit/${roomID}`, {}, JSON.stringify([newAttrs, room]));
+                          stompClient.send(`/app/move/postit/`, {}, JSON.stringify([newAttrs, roomID]));
                         }}
                         takeState={setText}
                         setPI={setPostIts}
@@ -711,6 +761,7 @@ function Room(props: any) {
             ) : (
               <div />
             )}
+            {/* 도구 모음 */}
           </div>
           <div className={styles.toolbar}>
             <div className={styles.toolbox}>
