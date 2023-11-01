@@ -224,7 +224,7 @@ function Room(props: any) {
     // stompClient.send(`/app/move/postit`, headers, JSON.stringify(payload));
 
     stompClient.send(
-      `/app/move/postit/`,
+      `/app/move/postit`,
       // `/app/move/postit/${roomID}`,
       {},
       JSON.stringify([
@@ -316,7 +316,7 @@ function Room(props: any) {
         const enterY = postIts[selectedId ?? 0].y;
         stompClient.send(
           // `/app/move/postit/${roomID}`,
-          `/app/move/postit/`,
+          `/app/move/postit`,
           {},
           JSON.stringify([
             {
@@ -698,7 +698,7 @@ function Room(props: any) {
                           // onChange={(newAttrs: any) => {
                           console.log(newAttrs);
                           // stompClient.send(`/app/move/postit/${roomID}`, {}, JSON.stringify([newAttrs]));
-                          stompClient.send(`/app/move/postit/`, {}, JSON.stringify([newAttrs, roomID]));
+                          stompClient.send(`/app/move/postit`, {}, JSON.stringify([newAttrs, roomID]));
                         }}
                         takeState={setText}
                         setPI={setPostIts}
@@ -726,7 +726,7 @@ function Room(props: any) {
                           // onChange={(newAttrs: any) => {
                           console.log(newAttrs);
                           // stompClient.send(`/app/move/postit/${roomID}`, {}, JSON.stringify([newAttrs, room]));
-                          stompClient.send(`/app/move/postit/`, {}, JSON.stringify([newAttrs, roomID]));
+                          stompClient.send(`/app/move/postit`, {}, JSON.stringify([newAttrs, roomID]));
                         }}
                         takeState={setText}
                         setPI={setPostIts}
