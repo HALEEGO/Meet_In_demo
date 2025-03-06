@@ -71,8 +71,8 @@ https://github.com/user-attachments/assets/f88b6dbd-4179-4e4d-9e96-41991df03bd8
 
 1️⃣ 환경 설정
 ```
-git clone https://github.com/your-repo/6-thinking-hat.git
-cd 6-thinking-hat
+git clone https://github.com/HALEEGO/Meet_In_demo.git
+cd Meet_In_demo
 ```
 2️⃣ 프론트엔드 실행
 ```
