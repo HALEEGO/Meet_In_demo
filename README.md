@@ -32,7 +32,7 @@ Six Thinking Hats 기반을 활용한 실시간 협업 도구로, 원격 회의 
 
 - 혼선 없는 체계적인 통보 가능
 
-## demo
+## 🎥 시연 영상
 https://github.com/user-attachments/assets/25a36c62-838c-4c16-9a79-7b6f7326df4d
 
 https://github.com/user-attachments/assets/f88b6dbd-4179-4e4d-9e96-41991df03bd8
